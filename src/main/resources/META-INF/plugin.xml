@@ -1,0 +1,27 @@
+<idea-plugin>
+    <id>top.breezes.javabean2ddl.java-bean-2-ddl-idea-plugin</id>
+    <name>JavaBean2DDL</name>
+    <vendor email="breezes_y@163.com">breezes</vendor>
+
+    <description><![CDATA[
+    Java bean convert mysql create table sql ddl script.<br>
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="com.breezes.javabean2ddl.main" class="com.breezes.javabean2ddl.main.MainAction"
+                text="CreateTableDDL" description="Java bean convert mysql create table sql ddl script">
+            <add-to-group group-id="GenerateGroup" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
