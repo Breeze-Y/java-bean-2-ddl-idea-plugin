@@ -53,11 +53,10 @@
           </vspacer>
         </children>
       </grid>
-      <component id="40c83" class="javax.swing.JTextPane" binding="sqlContentPanel">
+      <component id="5ba8" class="javax.swing.JTextArea" binding="sqlContentPanel">
         <constraints border-constraint="Center"/>
         <properties>
-          <font size="15" style="1"/>
-          <text value=""/>
+          <font size="12"/>
         </properties>
       </component>
     </children>

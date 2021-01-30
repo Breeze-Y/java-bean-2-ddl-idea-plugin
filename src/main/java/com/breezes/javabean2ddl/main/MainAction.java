@@ -3,7 +3,7 @@ package com.breezes.javabean2ddl.main;
 import com.breezes.javabean2ddl.model.Field;
 import com.breezes.javabean2ddl.ui.MainPanel;
 import com.breezes.javabean2ddl.utils.BaseUtil;
-import com.breezes.javabean2ddl.utils.DdlUtil;
+import com.breezes.javabean2ddl.utils.DdlFormatUtil;
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.Lists;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -38,7 +38,8 @@ public class MainAction extends AnAction {
         String tableName = getTableName();
         /*获取当前类所有字段*/
         List<Field> fieldList = getFieldList();
-        String script = DdlUtil.buildDdlScript(tableName, fieldList);
+        String script = DdlFormatUtil.buildDdlScript(tableName, fieldList);
+        System.out.println(script);
         mainPanelInit(script);
     }
 

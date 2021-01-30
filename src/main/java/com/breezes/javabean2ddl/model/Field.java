@@ -1,6 +1,7 @@
 package com.breezes.javabean2ddl.model;
 
 
+import com.breezes.javabean2ddl.enums.SqlTypeEnum;
 import com.google.common.base.CaseFormat;
 
 /**
@@ -26,6 +27,25 @@ public class Field {
 
     public String getTableColumn() {
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, this.name);
+    }
+
+    public String getSqlType() {
+        if (null == getSqlTypeSize()) {
+            return getSqlTypeForMapping();
+        }
+        return getSqlTypeForMapping() + getSqlTypeSize();
+    }
+
+    /**
+     * 获取mysql类型
+     */
+    public String getSqlTypeForMapping() {
+        /*类型映射*/
+        return SqlTypeEnum.findByJavaType(this.type).getSqlType();
+    }
+
+    public String getSqlTypeSize() {
+        return SqlTypeEnum.findByJavaType(this.type).getDefaultLength();
     }
 
     public Field() {
@@ -59,7 +79,7 @@ public class Field {
         this.type = type;
     }
 
-    public Boolean getPrimaryKey() {
+    public Boolean isPrimaryKey() {
         return primaryKey;
     }
 

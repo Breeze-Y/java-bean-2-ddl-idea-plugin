@@ -1,4 +1,4 @@
-package com.breezes.javabean2ddl;
+package com.breezes.javabean2ddl.service;
 
 /**
  * @author yuchengxin@xiaomalixing.com
@@ -34,7 +34,7 @@ public class DdlBuilder {
     }
 
     public DdlBuilder addField(String field, String type, boolean isPrimaryKey) {
-        ddl.append(field).append("   ").append(type);
+        ddl.append(field).append(type);
         if (isPrimaryKey) {
             ddl.append(" AUTO_INCREMENT PRIMARY KEY");
         } else {
@@ -44,8 +44,42 @@ public class DdlBuilder {
         return this;
     }
 
+    public DdlBuilder addColumn(String field) {
+        ddl.append(field);
+        return this;
+    }
+
+    public DdlBuilder addType(String type) {
+        ddl.append(type);
+        return this;
+    }
+
+    public DdlBuilder isPrimaryKey(boolean isPrimaryKey) {
+        if (isPrimaryKey) {
+            ddl.append("AUTO_INCREMENT PRIMARY KEY");
+        } else {
+            ddl.append(" NULL");
+        }
+        return this;
+    }
+
+    public DdlBuilder addComma() {
+        ddl.append(",");
+        return this;
+    }
+
     public DdlBuilder space() {
         ddl.append(" ");
+        return this;
+    }
+
+    public DdlBuilder space(int size) {
+        if (size <= 0) {
+            size = 1;
+        }
+        for (int i = 0; i < size; i++) {
+            space();
+        }
         return this;
     }
 
@@ -56,6 +90,11 @@ public class DdlBuilder {
 
     public DdlBuilder remove() {
         ddl.deleteCharAt(ddl.length() - 1);
+        return this;
+    }
+
+    public DdlBuilder remove(int size) {
+        ddl.delete(ddl.length() - size, ddl.length());
         return this;
     }
 
