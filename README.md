@@ -44,4 +44,4 @@ java-bean-2-ddl-idea-plugin
 
 #### 5. 界面预览
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0131/030247_3506e5b9_5081865.png "QQ20210131-030020@2x.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0131/030430_f19b08e1_5081865.png "QQ20210131-030413@2x.png")
