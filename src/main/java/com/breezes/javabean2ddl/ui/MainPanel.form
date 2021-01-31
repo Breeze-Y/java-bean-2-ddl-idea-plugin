@@ -36,7 +36,7 @@
               <text value="去除父类属性:"/>
             </properties>
           </component>
-          <component id="920f6" class="javax.swing.JRadioButton" binding="removeRadioButton" default-binding="true">
+          <component id="920f6" class="javax.swing.JRadioButton" binding="removeSuperPropertyRadio">
             <constraints>
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>

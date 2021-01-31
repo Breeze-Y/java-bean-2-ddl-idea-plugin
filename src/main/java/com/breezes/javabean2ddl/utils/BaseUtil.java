@@ -45,6 +45,19 @@ public class BaseUtil {
     }
 
     /**
+     * 获取当前类的所有字段(包括父类)
+     *
+     * @param psiClass
+     * @return
+     */
+    public static PsiField[] getAllFields(PsiClass psiClass) {
+        if (null == psiClass) {
+            return new PsiField[0];
+        }
+        return psiClass.getAllFields();
+    }
+
+    /**
      * 获取当前类的所有字段
      *
      * @param psiClass
@@ -54,7 +67,7 @@ public class BaseUtil {
         if (null == psiClass) {
             return new PsiField[0];
         }
-        return psiClass.getAllFields();
+        return psiClass.getFields();
     }
 
     /**

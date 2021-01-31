@@ -4,6 +4,8 @@ package com.breezes.javabean2ddl.model;
 import com.breezes.javabean2ddl.enums.SqlTypeEnum;
 import com.google.common.base.CaseFormat;
 
+import java.util.Objects;
+
 /**
  * @author yuchengxin@xiaomalixing.com
  * @date 2021/1/30 15:11
@@ -16,6 +18,19 @@ public class Field {
     private String type;
 
     private Boolean primaryKey;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Field field = (Field) o;
+        return Objects.equals(name, field.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     public static Field newField(String name, String type, boolean primaryKey) {
         return new Field(name, type, primaryKey);
