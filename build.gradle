@@ -7,7 +7,7 @@ group 'top.breezes.javabean2ddl'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
+//    mavenCentral()
 }
 
 dependencies {
@@ -26,19 +26,15 @@ allprojects {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.3.1'
-    plugins = ["org.intellij.scala:2020.3.1", 'java']
+    version '2020.1'
+    plugins = ['java']
+    intellij.updateSinceUntilBuild false
 }
 
 apply plugin: 'java'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-patchPluginXml {
-    changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
-}
 test {
     useJUnitPlatform()
 }

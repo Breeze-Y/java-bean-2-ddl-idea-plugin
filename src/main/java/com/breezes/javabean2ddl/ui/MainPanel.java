@@ -29,6 +29,7 @@ public class MainPanel extends JFrame {
     private JButton copy;
     private JRadioButton removeSuperPropertyRadio;
     private JTextArea sqlContentPanel;
+    private JLabel jlabel;
 
     private String contentTxt;
     private final PsiClass currentClass;
@@ -38,6 +39,9 @@ public class MainPanel extends JFrame {
         this.contentTxt = contentTxt;
         this.currentClass = currentClass;
         this.mainService = new MainService();
+
+        copy.setText("一键复制");
+        jlabel.setText("去除父类属性:");
 
         setSize(500, 600);
         setTitle("Java Bean Convert DDL");

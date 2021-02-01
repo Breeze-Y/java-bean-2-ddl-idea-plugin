@@ -4,11 +4,9 @@
     <vendor email="breezes_y@163.com">breezes</vendor>
 
     <description><![CDATA[
-    <html>
-        把Java bean 转换成Mysql数据库建表语句。<br>
-        Java bean convert mysql create table sql ddl script.<br>
+        Java bean convert mysql create table sql ddl script.<br/>
+        把Java bean 转换成Mysql数据库建表语句。<br/>
         <a href="https://gitee.com/yuchengxin75/java-bean-2-ddl-idea-plugin"> 代码地址</a>
-    </html>
     ]]></description>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -18,13 +16,9 @@
     <depends>com.intellij.modules.java</depends>
 
     <change-notes><![CDATA[
-      <p>
-      1.0.0
-      <ul>
-      <li>New: 一键复制</li>
-      <li>New: 添加，移除父类属性</li>
-      </ul>
-      </p>
+      1.0.0 :
+        <li>New: 一键复制</li>
+        <li>New: 添加，移除父类属性</li>
     ]]></change-notes>
 
     <extensions defaultExtensionNs="com.intellij">
