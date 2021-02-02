@@ -5,8 +5,22 @@
 
     <description><![CDATA[
         Java bean convert mysql create table sql ddl script.<br/>
+        You can use this plugin to quickly convert entity attributes in Bean Class
+        into DDL statements for creating tables in Mysql database.<br/>
+        <br/>
         把Java bean 转换成Mysql数据库建表语句。<br/>
-        <a href="https://gitee.com/yuchengxin75/java-bean-2-ddl-idea-plugin"> 代码地址</a>
+        你可以利用本插件快速的把Bean Class中的实体属性转换成Mysql数据库的建表DDL语句。
+        <br/>
+        <a href="https://gitee.com/yuchengxin75/java-bean-2-ddl-idea-plugin"> 代码地址（source code）</a>
+
+        <br/>
+        <br/>
+        - Instructions for use: command + N, select CreateTableDDL option, you can quickly realize the conversion.
+        If you need to continue editing, you can edit directly in the text box of the pop-up window.
+        After editing, click the 'one-click copy' button to quickly copy the text and paste it where you want to execute.
+        <br/>
+        - 使用说明: command + N ，选择CreateTableDDL选项，即可快速实现转换。
+        如果你需要继续编辑，可以直接在弹窗的文本框中就行编辑，编辑完成后点击'一键复制'按钮即可快速复制文本，粘贴到你想要执行的地方。<br/>
     ]]></description>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
@@ -18,7 +32,7 @@
     <idea-version since-build="201"/>
 
     <change-notes><![CDATA[
-      1.0.0 :
+      - 1.0.0
         <li>New: 一键复制</li>
         <li>New: 添加，移除父类属性</li>
     ]]></change-notes>
