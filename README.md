@@ -1,7 +1,7 @@
 # Java Bean Convert Mysql DDL Script
 
 #### 1. 介绍
-把Java实体类转换成Mysql数据库建表DDL语句。
+把Java实体类转换成Mysql数据库建表DDL语句。    
 [Marketplace](https://plugins.jetbrains.com/plugin/15980-javabean2ddl)
 
 #### 2. 软件架构
