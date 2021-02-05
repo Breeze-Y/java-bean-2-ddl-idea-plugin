@@ -32,12 +32,14 @@ public class DdlFormatUtil {
         maxFieldStringLength++;
         maxFieldSqlTypeStringLength++;
 
-
         for (Field field : fieldList) {
+            String tableColumn = field.getTableColumn();
             builder.space(4)
-                    .addColumn(String.format("%-" + maxFieldStringLength + "s", field.getTableColumn()))
+                    .addColumn(String.format("%-" + maxFieldStringLength + "s", tableColumn))
                     .addType(String.format("%-" + maxFieldSqlTypeStringLength + "s", field.getSqlType()))
                     .isPrimaryKey(field.isPrimaryKey())
+                    .space()
+                    .addComment(field.getCommend())
                     .addComma()
                     .wrap();
         }

@@ -26,7 +26,7 @@ public class MainAction extends AnAction {
     private static final MainService mainService;
 
     static {
-        mainService = new MainService();
+        mainService = new MainService(true);
     }
 
     @Override
@@ -39,17 +39,17 @@ public class MainAction extends AnAction {
         List<Field> fieldList = mainService.getFieldList(CURRENT_CLASS);
         String script = DdlFormatUtil.buildDdlScript(tableName, fieldList);
         System.out.println(script);
-        mainPanelInit(script, CURRENT_CLASS);
+        mainPanelInit(script, CURRENT_CLASS, mainService);
     }
 
     /**
      * 主面板初始化
-     *
-     * @param script
+     *  @param script
      * @param currentClass 操作的当前类
+     * @param mainService
      */
-    private void mainPanelInit(String script, PsiClass currentClass) {
-        new MainPanel(script, currentClass);
+    private void mainPanelInit(String script, PsiClass currentClass, MainService mainService) {
+        new MainPanel(script, currentClass, mainService);
     }
 
 }

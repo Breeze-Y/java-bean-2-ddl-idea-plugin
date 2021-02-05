@@ -35,10 +35,10 @@ public class MainPanel extends JFrame {
     private final PsiClass currentClass;
     private final MainService mainService;
 
-    public MainPanel(String contentTxt, PsiClass currentClass) throws HeadlessException {
+    public MainPanel(String contentTxt, PsiClass currentClass, MainService mainService) throws HeadlessException {
         this.contentTxt = contentTxt;
         this.currentClass = currentClass;
-        this.mainService = new MainService();
+        this.mainService = mainService;
 
         copy.setText("一键复制");
         jlabel.setText("去除父类属性:");

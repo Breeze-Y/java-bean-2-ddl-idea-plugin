@@ -19,6 +19,8 @@ public class Field {
 
     private Boolean primaryKey;
 
+    private String commend;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,5 +102,17 @@ public class Field {
 
     public void setPrimaryKey(Boolean primaryKey) {
         this.primaryKey = primaryKey;
+    }
+
+    public Boolean getPrimaryKey() {
+        return primaryKey;
+    }
+
+    public String getCommend() {
+        return commend;
+    }
+
+    public void setCommend(String commend) {
+        this.commend = commend;
     }
 }

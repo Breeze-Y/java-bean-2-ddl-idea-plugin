@@ -83,6 +83,11 @@ public class DdlBuilder {
         return this;
     }
 
+    public DdlBuilder addComment(String commend) {
+        ddl.append("COMMENT ").append("'").append(commend).append("'");
+        return this;
+    }
+
     public DdlBuilder wrap() {
         ddl.append("\n");
         return this;

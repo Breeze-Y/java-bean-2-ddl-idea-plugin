@@ -2,6 +2,7 @@ package com.breezes.javabean2ddl.service;
 
 import com.breezes.javabean2ddl.model.Field;
 import com.breezes.javabean2ddl.utils.BaseUtil;
+import com.breezes.javabean2ddl.utils.TranslationUtil;
 import com.google.common.base.CaseFormat;
 import com.intellij.psi.PsiAnnotation;
 import com.intellij.psi.PsiAnnotationMemberValue;
@@ -11,6 +12,7 @@ import com.intellij.psi.impl.source.tree.java.PsiLiteralExpressionImpl;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.breezes.javabean2ddl.constant.Constant.DATE_PACKAGE;
 import static com.breezes.javabean2ddl.constant.Constant.STRING_PACKAGE;
@@ -21,6 +23,16 @@ import static com.breezes.javabean2ddl.constant.Constant.STRING_PACKAGE;
  * @description
  */
 public class MainService {
+
+    private final boolean autoTranslationCommend;
+
+    public static final String PRIMARY_KEY_COMMEND = "物理主键";
+
+    private static ConcurrentHashMap<String, String> stringStringConcurrentHashMap;
+
+    public MainService(boolean autoTranslationCommend) {
+        this.autoTranslationCommend = autoTranslationCommend;
+    }
 
     public String getTableName(PsiClass currentClass) {
         PsiAnnotation annotation = currentClass.getAnnotation("javax.persistence.Table");
@@ -61,8 +73,55 @@ public class MainService {
                 fieldSet.add(getField(field));
             }
         }
-        return new ArrayList<>(fieldSet);
+
+        // set command
+        List<Field> fieldList = new ArrayList<>(fieldSet);
+        if (autoTranslationCommend) {
+            Map<String, String> translationMap = getTranslationMap(fieldList);
+            for (Field field : fieldList) {
+                field.setCommend(getCommend(field, translationMap));
+            }
+        }
+
+        return fieldList;
     }
+
+    /**
+     * 翻译字段得到注释
+     *
+     * @param fieldList
+     * @return
+     */
+    private static Map<String, String> getTranslationMap(List<Field> fieldList) {
+        if (null != stringStringConcurrentHashMap && !stringStringConcurrentHashMap.isEmpty()) {
+            return stringStringConcurrentHashMap;
+        }
+
+        List<String> commendList = new ArrayList<>();
+        for (Field field : fieldList) {
+            commendList.add(field.getTableColumn().replace("_", " "));
+        }
+        String commendJoin = String.join("\n", commendList);
+        Map<String, String> translationMap = TranslationUtil.enToZh(commendJoin);
+        stringStringConcurrentHashMap = new ConcurrentHashMap<>(translationMap);
+
+        return stringStringConcurrentHashMap;
+    }
+
+    /**
+     * 获取注释
+     *
+     * @param field
+     * @param translationMap
+     * @return
+     */
+    private static String getCommend(Field field, Map<String, String> translationMap) {
+        if (!StringUtils.equals(field.getName(), "id")) {
+            return translationMap.getOrDefault(field.getTableColumn().replace("_", " "), "");
+        }
+        return PRIMARY_KEY_COMMEND;
+    }
+
 
     private PsiField[] getPsiFields(PsiClass currentClass, boolean allField) {
         if (allField) {
