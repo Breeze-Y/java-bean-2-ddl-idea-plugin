@@ -21,8 +21,6 @@ import java.util.List;
  */
 public class MainAction extends AnAction {
 
-    private static PsiClass CURRENT_CLASS;
-
     private static final MainService mainService;
 
     static {
@@ -32,7 +30,7 @@ public class MainAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         PsiFile FILE = anActionEvent.getData(CommonDataKeys.PSI_FILE);
-        CURRENT_CLASS = BaseUtil.getClassEntity(FILE);
+        PsiClass CURRENT_CLASS = BaseUtil.getClassEntity(FILE);
         assert CURRENT_CLASS != null;
         String tableName = mainService.getTableName(CURRENT_CLASS);
         /*获取当前类所有字段*/
