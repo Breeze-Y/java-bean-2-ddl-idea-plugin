@@ -19,6 +19,7 @@
         If you need to continue editing, you can edit directly in the text box of the pop-up window.
         After editing, click the 'one-click copy' button to quickly copy the text and paste it where you want to execute.
         <br/>
+        <br/>
         - 使用说明: command + N ，选择CreateTableDDL选项，即可快速实现转换。
         如果你需要继续编辑，可以直接在弹窗的文本框中就行编辑，编辑完成后点击'一键复制'按钮即可快速复制文本，粘贴到你想要执行的地方。<br/>
     ]]></description>
@@ -29,7 +30,7 @@
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
 
-    <idea-version since-build="201"/>
+    <idea-version since-build="192"/>
 
     <change-notes><![CDATA[
       - 1.0.0

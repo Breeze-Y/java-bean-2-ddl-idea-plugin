@@ -27,9 +27,10 @@ public class MainService {
         if (null != annotation && null != annotation.findAttributeValue("name")) {
             PsiAnnotationMemberValue name = annotation.findAttributeValue("name");
             if (null != name && StringUtils.isNotBlank(name.getText())) {
-                //return PsiLiteralUtil.getStringLiteralContent(((PsiLiteralExpressionImpl) name));
+//                return PsiLiteralUtil.getStringLiteralContent(((PsiLiteralExpressionImpl) name));
                 // 低版本兼容
-                return ((PsiLiteralExpressionImpl) name).getInnerText();
+//                return ((PsiLiteralExpressionImpl) name).getInnerText();
+                return BaseUtil.getStringLiteralContent(((PsiLiteralExpressionImpl) name));
             }
         }
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, Objects.requireNonNull(currentClass.getName()));
