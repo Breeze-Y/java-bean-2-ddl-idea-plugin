@@ -50,11 +50,7 @@ public class SettingPanel {
     }
 
     private void accountPanelInit() {
-        if (!autoTranslationRadio.isSelected()) {
-            accountPanel.setVisible(false);
-            return;
-        }
-        accountPanel.setVisible(true);
+        accountPanel.setVisible(autoTranslationRadio.isSelected());
     }
 
     private void autoTranslationRadioInit() {
