@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.breezes.javabean2ddl.ui.SettingPanel">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="1730"/>
+      <xy x="17" y="20" width="503" height="691"/>
     </constraints>
     <properties/>
     <border type="none"/>

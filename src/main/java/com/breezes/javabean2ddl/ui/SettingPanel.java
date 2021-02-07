@@ -1,6 +1,12 @@
 package com.breezes.javabean2ddl.ui;
 
+import com.breezes.javabean2ddl.enums.TranslationAppEnum;
+import com.breezes.javabean2ddl.model.ComboBoxItem;
+import com.breezes.javabean2ddl.model.TranslationAppComboBoxItem;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @author yuchengxin@xiaomalixing.com
@@ -12,31 +18,66 @@ public class SettingPanel {
     private JPanel accountPanel;
     private JPanel translationSettingPanel;
     private JPanel translationBasePanel;
-    private JComboBox translationAppComboBox;
+    private JComboBox<ComboBoxItem> translationAppComboBox;
     private JTextField appIdText;
     private JRadioButton autoTranslationRadio;
     private JTextField secretText;
     private JTextField tableText;
     private JTextField idText;
     private JTextField commendText;
-    private JComboBox intMapComboBox;
+    private JComboBox<ComboBoxItem> intMapComboBox;
     private JTextField intDefaultText;
     private JPanel auxiliaryPanel;
     private JPanel annotationPanel;
     private JPanel docPanel;
     private JPanel mapPanel;
     private JPanel commonlyUsedMapPanel;
-    private JComboBox longMapComboBox;
+    private JComboBox<ComboBoxItem> longMapComboBox;
     private JTextField longDefaultText;
-    private JComboBox stringMapComboBox;
+    private JComboBox<ComboBoxItem> stringMapComboBox;
     private JTextField stringDefaultText;
-    private JComboBox booleanMapComboBox;
+    private JComboBox<ComboBoxItem> booleanMapComboBox;
     private JTextField booleanDefaultText;
-    private JComboBox dateMapComboBox;
+    private JComboBox<ComboBoxItem> dateMapComboBox;
     private JTextField dateDefaultText;
 
     public SettingPanel() {
+        accountPanelInit();
+        /*翻译组件下拉框初始化*/
+        translationAppComboBoxInit();
+        /*自动翻译单元框*/
+        autoTranslationRadioInit();
     }
+
+    private void accountPanelInit() {
+        if (!autoTranslationRadio.isSelected()) {
+            accountPanel.setVisible(false);
+            return;
+        }
+        accountPanel.setVisible(true);
+    }
+
+    private void autoTranslationRadioInit() {
+        autoTranslationRadio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (autoTranslationRadio.isSelected()) {
+                    accountPanel.setVisible(true);
+                    return;
+                }
+                accountPanel.setVisible(false);
+            }
+        });
+    }
+
+    private void commonlyUsedMapComboBoxInit() {
+
+    }
+
+    private void translationAppComboBoxInit() {
+        translationAppComboBox.addItem(new TranslationAppComboBoxItem(TranslationAppEnum.BAIDU));
+    }
+
 
     public JPanel getMainPanel() {
         return mainPanel;
