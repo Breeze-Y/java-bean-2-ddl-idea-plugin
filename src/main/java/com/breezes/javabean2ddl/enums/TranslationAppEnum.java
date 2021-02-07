@@ -1,5 +1,7 @@
 package com.breezes.javabean2ddl.enums;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @author yuchengxin@xiaomalixing.com
  * @date 2021/2/7 19:25
@@ -7,6 +9,7 @@ package com.breezes.javabean2ddl.enums;
  */
 public enum TranslationAppEnum {
 
+    EMPTY("", ""),
     BAIDU("百度翻译", "baidu");
 
     private final String name;
@@ -18,11 +21,20 @@ public enum TranslationAppEnum {
         this.value = value;
     }
 
+    public static TranslationAppEnum findByValue(String value) {
+        for (TranslationAppEnum translationAppEnum : values()) {
+            if (StringUtils.equals(value, translationAppEnum.getValue())) {
+                return translationAppEnum;
+            }
+        }
+        return EMPTY;
+    }
+
     public String getName() {
         return name;
     }
 
-    public String getCode() {
+    public String getValue() {
         return value;
     }
 }

@@ -1,5 +1,7 @@
 package com.breezes.javabean2ddl.model;
 
+import java.util.Objects;
+
 /**
  * @author yuchengxin@xiaomalixing.com
  * @date 2021/2/6 23:44
@@ -22,6 +24,19 @@ public class ComboBoxItem {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComboBoxItem that = (ComboBoxItem) o;
+        return value.equals(that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 
     public String getName() {

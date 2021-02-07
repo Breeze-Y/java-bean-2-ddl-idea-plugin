@@ -42,6 +42,9 @@
         <!-- Add your extensions here -->
         <!-- 插件配置窗口 -->
         <applicationConfigurable instance="com.breezes.javabean2ddl.ui.SettingPanelConfig" groupId="tools"/>
+
+        <!-- applicationService 这个是插件配置文件的持久化 -->
+        <applicationService serviceImplementation="com.breezes.javabean2ddl.setting.MainSetting"/>
     </extensions>
 
     <actions>

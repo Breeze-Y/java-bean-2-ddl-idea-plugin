@@ -18,7 +18,7 @@ public class TranslationAppComboBoxItem extends ComboBoxItem {
 
     public TranslationAppComboBoxItem(TranslationAppEnum appEnum) {
         this.name = appEnum.getName();
-        this.value = appEnum.getCode();
+        this.value = appEnum.getValue();
     }
 
 }
