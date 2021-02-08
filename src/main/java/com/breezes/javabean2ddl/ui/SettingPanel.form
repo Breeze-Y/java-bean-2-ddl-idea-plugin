@@ -18,7 +18,7 @@
         <clientProperties>
           <html.disable class="java.lang.Boolean" value="false"/>
         </clientProperties>
-        <border type="none" title="翻译配置">
+        <border type="none" title="翻译配置（需要网络支持）">
           <font/>
           <title-color color="-4473925"/>
         </border>
