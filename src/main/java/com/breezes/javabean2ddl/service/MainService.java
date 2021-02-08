@@ -1,5 +1,6 @@
 package com.breezes.javabean2ddl.service;
 
+import com.breezes.javabean2ddl.main.MainAction;
 import com.breezes.javabean2ddl.model.Field;
 import com.breezes.javabean2ddl.setting.MainSetting;
 import com.breezes.javabean2ddl.utils.BaseUtil;
@@ -26,8 +27,6 @@ import static com.breezes.javabean2ddl.constant.Constant.STRING_PACKAGE;
 public class MainService {
 
     public static final String PRIMARY_KEY_COMMEND = "物理主键";
-
-    private static ConcurrentHashMap<String, String> stringStringConcurrentHashMap;
 
     public String getTableName(PsiClass currentClass) {
         PsiAnnotation annotation = currentClass.getAnnotation("javax.persistence.Table");
@@ -72,7 +71,7 @@ public class MainService {
         // set command
         List<Field> fieldList = new ArrayList<>(fieldSet);
         if (MainSetting.getInstance().myProperties.getAutoTranslationRadio()) {
-            Map<String, String> translationMap = getTranslationMap(fieldList);
+            Map<String, String> translationMap = getTranslationMap(fieldList, getTableName(currentClass));
             for (Field field : fieldList) {
                 field.setCommend(getCommend(field, translationMap));
             }
@@ -85,22 +84,18 @@ public class MainService {
      * 翻译字段得到注释
      *
      * @param fieldList
+     * @param tableName
      * @return
      */
-    private static Map<String, String> getTranslationMap(List<Field> fieldList) {
-        if (null != stringStringConcurrentHashMap && !stringStringConcurrentHashMap.isEmpty()) {
-            return stringStringConcurrentHashMap;
+    private static Map<String, String> getTranslationMap(List<Field> fieldList, String tableName) {
+        if (null != MainAction.translationMap && !MainAction.translationMap.isEmpty()) {
+            return MainAction.translationMap;
         }
 
-        List<String> commendList = new ArrayList<>();
-        for (Field field : fieldList) {
-            commendList.add(field.getTableColumn().replace("_", " "));
-        }
-        String commendJoin = String.join("\n", commendList);
-        Map<String, String> translationMap = TranslationUtil.enToZh(commendJoin);
-        stringStringConcurrentHashMap = new ConcurrentHashMap<>(translationMap);
+        Map<String, String> translationMap = TranslationUtil.enToZh(fieldList, tableName);
+        MainAction.translationMap = new ConcurrentHashMap<>(translationMap);
 
-        return stringStringConcurrentHashMap;
+        return translationMap;
     }
 
     /**

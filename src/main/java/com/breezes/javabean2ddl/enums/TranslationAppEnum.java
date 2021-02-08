@@ -9,7 +9,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum TranslationAppEnum {
 
-    EMPTY("", ""),
+    EMPTY("请选择翻译组件", ""),
+    TENCENT("腾讯翻译", "tencent"),
     BAIDU("百度翻译", "baidu");
 
     private final String name;

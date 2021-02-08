@@ -1,5 +1,6 @@
 package com.breezes.javabean2ddl.utils;
 
+import com.breezes.javabean2ddl.main.MainAction;
 import com.breezes.javabean2ddl.model.Field;
 import com.breezes.javabean2ddl.service.DdlBuilder;
 import com.breezes.javabean2ddl.setting.MainSetting;
@@ -38,22 +39,26 @@ public class DdlFormatUtil {
 
         for (Field field : fieldList) {
             String tableColumn = field.getTableColumn();
-            DdlBuilder build = builder.space(4)
+            builder = builder.space(4)
                     .addColumn(String.format("%-" + maxFieldStringLength + "s", tableColumn))
                     .addType(String.format("%-" + maxFieldSqlTypeStringLength + "s", field.getSqlType()))
                     .isPrimaryKey(field.isPrimaryKey());
             if (autoTranslation) {
-                build.space().addComment(field.getCommend());
+                builder.space().addComment(field.getCommend());
             }
-            build.addComma()
+            builder.addComma()
                     .wrap();
         }
 
-        return builder.remove(2)
+        builder = builder.remove(2)
                 .wrap()
-                .rightParenthesis()
-                .remove()
-                .end();
+                .rightParenthesis();
+        if (autoTranslation) {
+            String tableNameCommend = MainAction.translationMap
+                    .getOrDefault(tableName.replace("_", " "), tableName);
+            builder.space().addComment(tableNameCommend);
+        }
+        return builder.end();
     }
 
 }

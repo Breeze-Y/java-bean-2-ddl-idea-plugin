@@ -17,6 +17,7 @@ dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
     compile group: 'org.springframework', name: 'spring-web', version: '5.2.12.RELEASE'
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.7'
+    compile group: 'com.tencentcloudapi', name: 'tencentcloud-sdk-java', version: '3.1.210'
 }
 
 allprojects {

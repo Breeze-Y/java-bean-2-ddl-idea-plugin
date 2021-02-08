@@ -56,6 +56,14 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
          * secret
          */
         private String secretText = "";
+        /**
+         * 腾讯云翻译secretId
+         */
+        private String secretId = "";
+        /**
+         * 腾讯云翻译secretKey
+         */
+        private String secretKey = "";
 
         public Boolean getAutoTranslationRadio() {
             return autoTranslationRadio;
@@ -87,6 +95,22 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
 
         public void setSecretText(String secretText) {
             this.secretText = secretText;
+        }
+
+        public String getSecretId() {
+            return secretId;
+        }
+
+        public void setSecretId(String secretId) {
+            this.secretId = secretId;
+        }
+
+        public String getSecretKey() {
+            return secretKey;
+        }
+
+        public void setSecretKey(String secretKey) {
+            this.secretKey = secretKey;
         }
     }
 }

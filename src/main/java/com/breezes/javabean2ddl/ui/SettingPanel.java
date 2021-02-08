@@ -5,10 +5,15 @@ import com.breezes.javabean2ddl.model.ComboBoxItem;
 import com.breezes.javabean2ddl.model.TranslationAppComboBoxItem;
 import com.breezes.javabean2ddl.setting.MainSetting;
 import com.intellij.openapi.components.ServiceManager;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import static com.breezes.javabean2ddl.enums.TranslationAppEnum.*;
 
 /**
  * @author yuchengxin@xiaomalixing.com
@@ -17,7 +22,7 @@ import java.awt.event.ActionListener;
  */
 public class SettingPanel {
     private JPanel mainPanel;
-    private JPanel accountPanel;
+    private JPanel baiduAccountPanel;
     private JPanel translationSettingPanel;
     private JPanel translationBasePanel;
     private JComboBox<ComboBoxItem> translationAppComboBox;
@@ -42,6 +47,9 @@ public class SettingPanel {
     private JTextField booleanDefaultText;
     private JComboBox<ComboBoxItem> dateMapComboBox;
     private JTextField dateDefaultText;
+    private JPanel tencentAccountPanel;
+    private JTextField secretId;
+    private JTextField secretKey;
 
     private MainSetting.MySettingProperties properties;
 
@@ -57,10 +65,14 @@ public class SettingPanel {
 
         appIdText.setText(properties.getAppIdText());
         secretText.setText(properties.getSecretText());
+
+        secretId.setText(properties.getSecretId());
+        secretKey.setText(properties.getSecretKey());
     }
 
     private void accountPanelInit() {
-        accountPanel.setVisible(properties.getAutoTranslationRadio());
+        baiduAccountPanel.setVisible(StringUtils.equals(BAIDU.getValue(), properties.getTranslationAppComboBox()));
+        tencentAccountPanel.setVisible(StringUtils.equals(TENCENT.getValue(), properties.getTranslationAppComboBox()));
     }
 
     private void autoTranslationRadioInit() {
@@ -71,10 +83,14 @@ public class SettingPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (autoTranslationRadio.isSelected()) {
-                    accountPanel.setVisible(true);
+                    TranslationAppComboBoxItem item = (TranslationAppComboBoxItem) translationAppComboBox.getSelectedItem();
+                    assert item != null;
+                    baiduAccountPanel.setVisible(StringUtils.equals(BAIDU.getValue(), item.getValue()));
+                    tencentAccountPanel.setVisible(StringUtils.equals(TENCENT.getValue(), item.getValue()));
                     return;
                 }
-                accountPanel.setVisible(false);
+                baiduAccountPanel.setVisible(false);
+                tencentAccountPanel.setVisible(false);
             }
         });
     }
@@ -85,14 +101,39 @@ public class SettingPanel {
 
     private void translationAppComboBoxInit() {
         // 填充下拉框数据
-        translationAppComboBox.addItem(new TranslationAppComboBoxItem(TranslationAppEnum.EMPTY));
-        translationAppComboBox.addItem(new TranslationAppComboBoxItem(TranslationAppEnum.BAIDU));
+        translationAppComboBox.addItem(new TranslationAppComboBoxItem(EMPTY));
+        translationAppComboBox.addItem(new TranslationAppComboBoxItem(TENCENT));
+        translationAppComboBox.addItem(new TranslationAppComboBoxItem(BAIDU));
         // 从配置中设置值
         translationAppComboBox.setSelectedItem(
                 new TranslationAppComboBoxItem(
                         TranslationAppEnum.findByValue(properties.getTranslationAppComboBox())
                 )
         );
+        translationAppComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    // 设置下拉框被选中的事件
+                    TranslationAppComboBoxItem item = (TranslationAppComboBoxItem) e.getItem();
+                    if (StringUtils.equals(TENCENT.getValue(), item.getValue())) {
+                        autoTranslationRadio.setSelected(true);
+                        tencentAccountPanel.setVisible(true);
+                        baiduAccountPanel.setVisible(false);
+                        return;
+                    }
+                    if (StringUtils.equals(BAIDU.getValue(), item.getValue())) {
+                        autoTranslationRadio.setSelected(true);
+                        tencentAccountPanel.setVisible(false);
+                        baiduAccountPanel.setVisible(true);
+                        return;
+                    }
+                    autoTranslationRadio.setSelected(false);
+                    tencentAccountPanel.setVisible(false);
+                    baiduAccountPanel.setVisible(false);
+                }
+            }
+        });
     }
 
 
@@ -105,11 +146,11 @@ public class SettingPanel {
     }
 
     public JPanel getAccountPanel() {
-        return accountPanel;
+        return baiduAccountPanel;
     }
 
     public void setAccountPanel(JPanel accountPanel) {
-        this.accountPanel = accountPanel;
+        this.baiduAccountPanel = accountPanel;
     }
 
     public JPanel getTranslationSettingPanel() {
@@ -302,5 +343,37 @@ public class SettingPanel {
 
     public void setDateDefaultText(JTextField dateDefaultText) {
         this.dateDefaultText = dateDefaultText;
+    }
+
+    public JPanel getBaiduAccountPanel() {
+        return baiduAccountPanel;
+    }
+
+    public void setBaiduAccountPanel(JPanel baiduAccountPanel) {
+        this.baiduAccountPanel = baiduAccountPanel;
+    }
+
+    public JPanel getTencentAccountPanel() {
+        return tencentAccountPanel;
+    }
+
+    public void setTencentAccountPanel(JPanel tencentAccountPanel) {
+        this.tencentAccountPanel = tencentAccountPanel;
+    }
+
+    public JTextField getSecretId() {
+        return secretId;
+    }
+
+    public void setSecretId(JTextField secretId) {
+        this.secretId = secretId;
+    }
+
+    public JTextField getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(JTextField secretKey) {
+        this.secretKey = secretKey;
     }
 }

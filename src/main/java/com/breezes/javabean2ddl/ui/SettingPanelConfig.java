@@ -49,7 +49,8 @@ public class SettingPanelConfig implements SearchableConfigurable {
     public boolean isModified() {
         System.out.println("校验配置修改");
         MainSetting.MySettingProperties myProperties = mainSetting.myProperties;
-        if (!StringUtils.equals(String.valueOf(myProperties.getAutoTranslationRadio()), String.valueOf(settingPanel.getAutoTranslationRadio().isSelected()))) {
+        if (!StringUtils.equals(String.valueOf(myProperties.getAutoTranslationRadio()),
+                String.valueOf(settingPanel.getAutoTranslationRadio().isSelected()))) {
             return true;
         }
         ComboBoxItem appComboBox = (ComboBoxItem) settingPanel.getTranslationAppComboBox().getSelectedItem();
@@ -63,6 +64,12 @@ public class SettingPanelConfig implements SearchableConfigurable {
         if (!StringUtils.equals(myProperties.getSecretText(), settingPanel.getSecretText().getText())) {
             return true;
         }
+        if (!StringUtils.equals(myProperties.getSecretId(), settingPanel.getSecretId().getText())) {
+            return true;
+        }
+        if (!StringUtils.equals(myProperties.getSecretKey(), settingPanel.getSecretKey().getText())) {
+            return true;
+        }
         return false;
     }
 
@@ -72,6 +79,8 @@ public class SettingPanelConfig implements SearchableConfigurable {
         myProperties.setAutoTranslationRadio(settingPanel.getAutoTranslationRadio().isSelected());
         myProperties.setAppIdText(settingPanel.getAppIdText().getText());
         myProperties.setSecretText(settingPanel.getSecretText().getText());
+        myProperties.setSecretId(settingPanel.getSecretId().getText());
+        myProperties.setSecretKey(settingPanel.getSecretKey().getText());
         ComboBoxItem appComboBox = (ComboBoxItem) settingPanel.getTranslationAppComboBox().getSelectedItem();
         assert appComboBox != null;
         myProperties.setTranslationAppComboBox(appComboBox.getValue());

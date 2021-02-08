@@ -13,6 +13,7 @@ import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author yuchengxin@xiaomalixing.com
@@ -21,14 +22,14 @@ import java.util.List;
  */
 public class MainAction extends AnAction {
 
-    private static final MainService mainService;
-
-    static {
-        mainService = new MainService();
-    }
+    public static ConcurrentHashMap<String, String> translationMap;
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
+        MainService mainService = new MainService();
+        if (null != translationMap) {
+            translationMap.clear();
+        }
         PsiFile FILE = anActionEvent.getData(CommonDataKeys.PSI_FILE);
         PsiClass CURRENT_CLASS = BaseUtil.getClassEntity(FILE);
         assert CURRENT_CLASS != null;
