@@ -2,6 +2,7 @@ package com.breezes.javabean2ddl.utils;
 
 import com.breezes.javabean2ddl.model.Field;
 import com.breezes.javabean2ddl.service.DdlBuilder;
+import com.breezes.javabean2ddl.setting.MainSetting;
 
 import java.util.List;
 
@@ -13,6 +14,9 @@ import java.util.List;
 public class DdlFormatUtil {
 
     public static String buildDdlScript(String tableName, List<Field> fieldList) {
+
+        Boolean autoTranslation = MainSetting.getInstance().myProperties.getAutoTranslationRadio();
+
         DdlBuilder builder = new DdlBuilder().create()
                 .tableName(tableName)
                 .LeftParenthesis()
@@ -34,13 +38,14 @@ public class DdlFormatUtil {
 
         for (Field field : fieldList) {
             String tableColumn = field.getTableColumn();
-            builder.space(4)
+            DdlBuilder build = builder.space(4)
                     .addColumn(String.format("%-" + maxFieldStringLength + "s", tableColumn))
                     .addType(String.format("%-" + maxFieldSqlTypeStringLength + "s", field.getSqlType()))
-                    .isPrimaryKey(field.isPrimaryKey())
-                    .space()
-                    .addComment(field.getCommend())
-                    .addComma()
+                    .isPrimaryKey(field.isPrimaryKey());
+            if (autoTranslation) {
+                build.space().addComment(field.getCommend());
+            }
+            build.addComma()
                     .wrap();
         }
 

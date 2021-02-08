@@ -1,6 +1,7 @@
 package com.breezes.javabean2ddl.service;
 
 import com.breezes.javabean2ddl.model.Field;
+import com.breezes.javabean2ddl.setting.MainSetting;
 import com.breezes.javabean2ddl.utils.BaseUtil;
 import com.breezes.javabean2ddl.utils.TranslationUtil;
 import com.google.common.base.CaseFormat;
@@ -24,15 +25,9 @@ import static com.breezes.javabean2ddl.constant.Constant.STRING_PACKAGE;
  */
 public class MainService {
 
-    private final boolean autoTranslationCommend;
-
     public static final String PRIMARY_KEY_COMMEND = "物理主键";
 
     private static ConcurrentHashMap<String, String> stringStringConcurrentHashMap;
-
-    public MainService(boolean autoTranslationCommend) {
-        this.autoTranslationCommend = autoTranslationCommend;
-    }
 
     public String getTableName(PsiClass currentClass) {
         PsiAnnotation annotation = currentClass.getAnnotation("javax.persistence.Table");
@@ -76,7 +71,7 @@ public class MainService {
 
         // set command
         List<Field> fieldList = new ArrayList<>(fieldSet);
-        if (autoTranslationCommend) {
+        if (MainSetting.getInstance().myProperties.getAutoTranslationRadio()) {
             Map<String, String> translationMap = getTranslationMap(fieldList);
             for (Field field : fieldList) {
                 field.setCommend(getCommend(field, translationMap));

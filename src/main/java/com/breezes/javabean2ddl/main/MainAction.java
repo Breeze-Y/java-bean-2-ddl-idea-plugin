@@ -24,7 +24,7 @@ public class MainAction extends AnAction {
     private static final MainService mainService;
 
     static {
-        mainService = new MainService(true);
+        mainService = new MainService();
     }
 
     @Override
@@ -42,7 +42,8 @@ public class MainAction extends AnAction {
 
     /**
      * 主面板初始化
-     *  @param script
+     *
+     * @param script
      * @param currentClass 操作的当前类
      * @param mainService
      */
