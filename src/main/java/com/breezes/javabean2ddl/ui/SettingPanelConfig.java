@@ -1,6 +1,8 @@
 package com.breezes.javabean2ddl.ui;
 
+import com.breezes.javabean2ddl.enums.TranslationAppEnum;
 import com.breezes.javabean2ddl.model.ComboBoxItem;
+import com.breezes.javabean2ddl.model.TranslationAppComboBoxItem;
 import com.breezes.javabean2ddl.setting.MainSetting;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SearchableConfigurable;
@@ -90,5 +92,14 @@ public class SettingPanelConfig implements SearchableConfigurable {
     @Override
     public void reset() {
         System.out.println("配置重置");
+        MainSetting.MySettingProperties myProperties = mainSetting.myProperties;
+        settingPanel.getAutoTranslationRadio().setSelected((myProperties.getAutoTranslationRadio()));
+        settingPanel.getTranslationAppComboBox().setSelectedItem(new TranslationAppComboBoxItem(
+                TranslationAppEnum.findByValue(myProperties.getTranslationAppComboBox())
+        ));
+        settingPanel.getAppIdText().setText(myProperties.getAppIdText());
+        settingPanel.getSecretText().setText(myProperties.getSecretText());
+        settingPanel.getSecretId().setText(myProperties.getSecretId());
+        settingPanel.getSecretKey().setText(myProperties.getSecretKey());
     }
 }
