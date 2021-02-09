@@ -66,7 +66,6 @@ public class TranslationUtil {
             }
             englishText = text.toString();
         }
-        System.out.println(englishText);
         List<TranslationVO> translationList = translation.toChinese(englishText);
         if (CollectionUtils.isEmpty(translationList)) {
             return dataMap;

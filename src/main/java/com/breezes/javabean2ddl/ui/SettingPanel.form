@@ -476,7 +476,7 @@
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties/>
-            <border type="none" title="Doc自定义配置"/>
+            <border type="none" title="读取JavaDoc自定义配置"/>
             <children>
               <component id="4cb96" class="javax.swing.JLabel">
                 <constraints>

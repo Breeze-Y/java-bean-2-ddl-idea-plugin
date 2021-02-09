@@ -43,7 +43,7 @@ public class MainPanel extends JFrame {
         copy.setText("一键复制");
         jlabel.setText("去除父类属性:");
 
-        setSize(500, 600);
+        setSize(550, 600);
         setTitle("Java Bean Convert DDL");
         setContentPane(content);
         // 屏幕居中
