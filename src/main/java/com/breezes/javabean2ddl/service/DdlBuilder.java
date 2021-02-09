@@ -26,7 +26,7 @@ public class DdlBuilder {
 
     public DdlBuilder rightParenthesis() {
         ddl.append(")");
-        return this.space();
+        return this;
     }
 
     public DdlBuilder addField(String field, String type) {
