@@ -43,7 +43,7 @@ public class DdlFormatUtil {
                     .addColumn(String.format("%-" + maxFieldStringLength + "s", tableColumn))
                     .addType(String.format("%-" + maxFieldSqlTypeStringLength + "s", field.getSqlType()))
                     .isPrimaryKey(field.isPrimaryKey());
-            if (autoTranslation) {
+            if (null != field.getComment()) {
                 builder.space().addComment(field.getComment());
             }
             builder.addComma()

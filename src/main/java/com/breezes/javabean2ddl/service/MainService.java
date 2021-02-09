@@ -81,9 +81,12 @@ public class MainService {
         // set command
         List<Field> fieldList = new ArrayList<>(fieldSet);
         if (MainSetting.getInstance().myProperties.getAutoTranslationRadio()) {
-            Map<String, String> translationMap = getTranslationMap(fieldList, getTableName(currentClass));
-            for (Field field : fieldList) {
-                field.setComment(getCommend(field, translationMap));
+            getTranslationMap(fieldList, getTableName(currentClass));
+        }
+
+        for (Field field : fieldList) {
+            if (StringUtils.isBlank(field.getComment())) {
+                field.setComment(getCommend(field, MainAction.translationMap));
             }
         }
 
@@ -101,23 +104,9 @@ public class MainService {
         if (null != MainAction.translationMap && !MainAction.translationMap.isEmpty()) {
             return MainAction.translationMap;
         }
-
-        List<Field> needTranslationList = new ArrayList<>();
-        List<Field> notTranslationList = new ArrayList<>();
-        for (Field field : fieldList) {
-            if (StringUtils.isBlank(field.getComment())) {
-                needTranslationList.add(field);
-                continue;
-            }
-            notTranslationList.add(field);
-        }
-        Map<String, String> translationMap = TranslationUtil.enToZh(needTranslationList, tableName);
+        Map<String, String> translationMap = TranslationUtil.enToZh(fieldList, tableName);
         MainAction.translationMap = new ConcurrentHashMap<>(translationMap);
-        for (Field field : notTranslationList) {
-            translationMap.put(field.getTableColumn().replace("_", " "), field.getComment());
-        }
-
-        return translationMap;
+        return new ConcurrentHashMap<>(translationMap);
     }
 
     /**
@@ -129,7 +118,10 @@ public class MainService {
      */
     private static String getCommend(Field field, Map<String, String> translationMap) {
         if (!StringUtils.equals(field.getName(), "id")) {
-            return translationMap.getOrDefault(field.getTableColumn().replace("_", " "), "");
+            if (MainSetting.getInstance().myProperties.getAutoTranslationRadio()) {
+                return translationMap.getOrDefault(field.getTableColumn().replace("_", " "), "");
+            }
+            return translationMap.getOrDefault(field.getTableColumn().replace("_", " "), null);
         }
         return PRIMARY_KEY_COMMEND;
     }

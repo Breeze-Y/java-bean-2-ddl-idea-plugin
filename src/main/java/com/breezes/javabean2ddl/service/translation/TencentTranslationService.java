@@ -34,7 +34,6 @@ public class TencentTranslationService implements Translation {
     @Override
     public List<TranslationVO> toChinese(String content) {
         TextTranslateResponse resp = requestApi(content);
-        System.out.println(resp.getTargetText());
         List<TranslationVO> translationVOList = new ArrayList<>();
         if (null == resp) {
             return translationVOList;

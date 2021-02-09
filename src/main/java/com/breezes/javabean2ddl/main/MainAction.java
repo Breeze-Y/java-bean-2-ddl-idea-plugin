@@ -26,13 +26,16 @@ public class MainAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-        MainService mainService = new MainService();
         if (null != translationMap) {
             translationMap.clear();
+        } else {
+            translationMap = new ConcurrentHashMap<>();
         }
+
         PsiFile FILE = anActionEvent.getData(CommonDataKeys.PSI_FILE);
         PsiClass CURRENT_CLASS = BaseUtil.getClassEntity(FILE);
         assert CURRENT_CLASS != null;
+        MainService mainService = new MainService();
         String tableName = mainService.getTableName(CURRENT_CLASS);
         /*获取当前类所有字段*/
         List<Field> fieldList = mainService.getFieldList(CURRENT_CLASS);
