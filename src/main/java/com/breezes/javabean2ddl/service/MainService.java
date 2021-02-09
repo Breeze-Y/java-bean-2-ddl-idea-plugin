@@ -29,16 +29,28 @@ public class MainService {
     public static final String PRIMARY_KEY_COMMEND = "物理主键";
 
     public String getTableName(PsiClass currentClass) {
-        PsiAnnotation annotation = currentClass.getAnnotation("javax.persistence.Table");
-        if (null != annotation && null != annotation.findAttributeValue("name")) {
-            PsiAnnotationMemberValue name = annotation.findAttributeValue("name");
-            if (null != name && StringUtils.isNotBlank(name.getText())) {
-//                return PsiLiteralUtil.getStringLiteralContent(((PsiLiteralExpressionImpl) name));
-                // 低版本兼容
-//                return ((PsiLiteralExpressionImpl) name).getInnerText();
-                return BaseUtil.getStringLiteralContent(((PsiLiteralExpressionImpl) name));
-            }
+        MainSetting.MySettingProperties properties = MainSetting.getInstance().myProperties;
+        String tableAnnotation = properties.getTableAnnotation();
+        if (StringUtils.isBlank(tableAnnotation)) {
+            // table注解为空直接返回类名作为表名
+            return getTableNameFromClass(currentClass);
         }
+        PsiAnnotation annotation = currentClass.getAnnotation(tableAnnotation);
+        if (null == annotation || null == annotation.findAttributeValue(properties.getTableAnnotationProperty())) {
+            return getTableNameFromClass(currentClass);
+        }
+        PsiAnnotationMemberValue value = annotation.findAttributeValue(properties.getTableAnnotationProperty());
+        if (null == value || StringUtils.isBlank(value.getText())) {
+            return getTableNameFromClass(currentClass);
+        }
+        // return PsiLiteralUtil.getStringLiteralContent(((PsiLiteralExpressionImpl) name));
+        // 低版本兼容
+        // return ((PsiLiteralExpressionImpl) name).getInnerText();
+        String tableName = BaseUtil.getStringLiteralContent(((PsiLiteralExpressionImpl) value));
+        return StringUtils.isNotBlank(tableName) ? tableName : getTableNameFromClass(currentClass);
+    }
+
+    private String getTableNameFromClass(PsiClass currentClass) {
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, Objects.requireNonNull(currentClass.getName()));
     }
 
@@ -121,9 +133,12 @@ public class MainService {
     }
 
     private Field getField(PsiField field) {
-        PsiAnnotation annotation = field.getAnnotation("javax.persistence.Id");
-        if (null != annotation) {
-            return Field.newField(field.getName(), field.getType().getPresentableText(), true);
+        String idAnnotation = MainSetting.getInstance().myProperties.getIdAnnotation();
+        if (StringUtils.isNotBlank(idAnnotation)) {
+            PsiAnnotation annotation = field.getAnnotation(idAnnotation);
+            if (null != annotation) {
+                return Field.newField(field.getName(), field.getType().getPresentableText(), true);
+            }
         }
         return Field.newField(field.getName(), field.getType().getPresentableText());
     }

@@ -64,6 +64,18 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
          * 腾讯云翻译secretKey
          */
         private String secretKey = "";
+        /**
+         * 表名使用的注解
+         */
+        private String tableAnnotation = "javax.persistence.Table";
+        /**
+         * 表名使用的注解属性
+         */
+        private String tableAnnotationProperty = "name";
+        /**
+         * id使用的注解
+         */
+        private String idAnnotation = "javax.persistence.Id";
 
         public Boolean getAutoTranslationRadio() {
             return autoTranslationRadio;
@@ -111,6 +123,30 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
 
         public void setSecretKey(String secretKey) {
             this.secretKey = secretKey;
+        }
+
+        public String getTableAnnotation() {
+            return tableAnnotation;
+        }
+
+        public void setTableAnnotation(String tableAnnotation) {
+            this.tableAnnotation = tableAnnotation;
+        }
+
+        public String getIdAnnotation() {
+            return idAnnotation;
+        }
+
+        public void setIdAnnotation(String idAnnotation) {
+            this.idAnnotation = idAnnotation;
+        }
+
+        public String getTableAnnotationProperty() {
+            return tableAnnotationProperty;
+        }
+
+        public void setTableAnnotationProperty(String tableAnnotationProperty) {
+            this.tableAnnotationProperty = tableAnnotationProperty;
         }
     }
 }

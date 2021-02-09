@@ -50,6 +50,7 @@ public class SettingPanel {
     private JPanel tencentAccountPanel;
     private JTextField secretId;
     private JTextField secretKey;
+    private JTextField tablePropertyText;
 
     private MainSetting.MySettingProperties properties;
 
@@ -375,5 +376,13 @@ public class SettingPanel {
 
     public void setSecretKey(JTextField secretKey) {
         this.secretKey = secretKey;
+    }
+
+    public JTextField getTablePropertyText() {
+        return tablePropertyText;
+    }
+
+    public void setTablePropertyText(JTextField tablePropertyText) {
+        this.tablePropertyText = tablePropertyText;
     }
 }

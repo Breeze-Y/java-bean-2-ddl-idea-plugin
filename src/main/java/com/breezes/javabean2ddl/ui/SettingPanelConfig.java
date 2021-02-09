@@ -72,6 +72,15 @@ public class SettingPanelConfig implements SearchableConfigurable {
         if (!StringUtils.equals(myProperties.getSecretKey(), settingPanel.getSecretKey().getText())) {
             return true;
         }
+        if (!StringUtils.equals(myProperties.getIdAnnotation(), settingPanel.getIdText().getText())) {
+            return true;
+        }
+        if (!StringUtils.equals(myProperties.getTableAnnotation(), settingPanel.getTableText().getText())) {
+            return true;
+        }
+        if (!StringUtils.equals(myProperties.getTableAnnotationProperty(), settingPanel.getTablePropertyText().getText())) {
+            return true;
+        }
         return false;
     }
 
@@ -86,6 +95,9 @@ public class SettingPanelConfig implements SearchableConfigurable {
         ComboBoxItem appComboBox = (ComboBoxItem) settingPanel.getTranslationAppComboBox().getSelectedItem();
         assert appComboBox != null;
         myProperties.setTranslationAppComboBox(appComboBox.getValue());
+        myProperties.setIdAnnotation(settingPanel.getIdText().getText());
+        myProperties.setTableAnnotation(settingPanel.getTableText().getText());
+        myProperties.setTableAnnotationProperty(settingPanel.getTablePropertyText().getText());
         System.out.println("配置保存");
     }
 
@@ -101,5 +113,8 @@ public class SettingPanelConfig implements SearchableConfigurable {
         settingPanel.getSecretText().setText(myProperties.getSecretText());
         settingPanel.getSecretId().setText(myProperties.getSecretId());
         settingPanel.getSecretKey().setText(myProperties.getSecretKey());
+        settingPanel.getIdText().setText(myProperties.getIdAnnotation());
+        settingPanel.getTableText().setText(myProperties.getTableAnnotation());
+        settingPanel.getTablePropertyText().setText(myProperties.getTableAnnotationProperty());
     }
 }
