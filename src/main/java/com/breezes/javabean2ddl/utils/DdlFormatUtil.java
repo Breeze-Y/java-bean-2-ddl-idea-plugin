@@ -44,7 +44,7 @@ public class DdlFormatUtil {
                     .addType(String.format("%-" + maxFieldSqlTypeStringLength + "s", field.getSqlType()))
                     .isPrimaryKey(field.isPrimaryKey());
             if (autoTranslation) {
-                builder.space().addComment(field.getCommend());
+                builder.space().addComment(field.getComment());
             }
             builder.addComma()
                     .wrap();

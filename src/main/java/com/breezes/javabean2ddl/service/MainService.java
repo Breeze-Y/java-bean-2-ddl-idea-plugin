@@ -6,11 +6,9 @@ import com.breezes.javabean2ddl.setting.MainSetting;
 import com.breezes.javabean2ddl.utils.BaseUtil;
 import com.breezes.javabean2ddl.utils.TranslationUtil;
 import com.google.common.base.CaseFormat;
-import com.intellij.psi.PsiAnnotation;
-import com.intellij.psi.PsiAnnotationMemberValue;
-import com.intellij.psi.PsiClass;
-import com.intellij.psi.PsiField;
+import com.intellij.psi.*;
 import com.intellij.psi.impl.source.tree.java.PsiLiteralExpressionImpl;
+import com.intellij.psi.javadoc.PsiDocTag;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
@@ -85,7 +83,7 @@ public class MainService {
         if (MainSetting.getInstance().myProperties.getAutoTranslationRadio()) {
             Map<String, String> translationMap = getTranslationMap(fieldList, getTableName(currentClass));
             for (Field field : fieldList) {
-                field.setCommend(getCommend(field, translationMap));
+                field.setComment(getCommend(field, translationMap));
             }
         }
 
@@ -104,8 +102,20 @@ public class MainService {
             return MainAction.translationMap;
         }
 
-        Map<String, String> translationMap = TranslationUtil.enToZh(fieldList, tableName);
+        List<Field> needTranslationList = new ArrayList<>();
+        List<Field> notTranslationList = new ArrayList<>();
+        for (Field field : fieldList) {
+            if (StringUtils.isBlank(field.getComment())) {
+                needTranslationList.add(field);
+                continue;
+            }
+            notTranslationList.add(field);
+        }
+        Map<String, String> translationMap = TranslationUtil.enToZh(needTranslationList, tableName);
         MainAction.translationMap = new ConcurrentHashMap<>(translationMap);
+        for (Field field : notTranslationList) {
+            translationMap.put(field.getTableColumn().replace("_", " "), field.getComment());
+        }
 
         return translationMap;
     }
@@ -133,14 +143,23 @@ public class MainService {
     }
 
     private Field getField(PsiField field) {
+        boolean primaryKey = false;
         String idAnnotation = MainSetting.getInstance().myProperties.getIdAnnotation();
         if (StringUtils.isNotBlank(idAnnotation)) {
             PsiAnnotation annotation = field.getAnnotation(idAnnotation);
             if (null != annotation) {
-                return Field.newField(field.getName(), field.getType().getPresentableText(), true);
+                primaryKey = true;
             }
         }
-        return Field.newField(field.getName(), field.getType().getPresentableText());
+
+        String commentStr = null;
+        if (null != field.getDocComment()) {
+            PsiDocTag comment = field.getDocComment().findTagByName("comment");
+            if (null != comment && null != comment.getValueElement()) {
+                commentStr = comment.getValueElement().getText();
+            }
+        }
+        return Field.newField(field.getName(), field.getType().getPresentableText(), primaryKey, commentStr);
     }
 
     /**

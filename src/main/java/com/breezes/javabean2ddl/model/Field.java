@@ -19,7 +19,7 @@ public class Field {
 
     private Boolean primaryKey;
 
-    private String commend;
+    private String comment;
 
     @Override
     public boolean equals(Object o) {
@@ -34,8 +34,8 @@ public class Field {
         return Objects.hash(name);
     }
 
-    public static Field newField(String name, String type, boolean primaryKey) {
-        return new Field(name, type, primaryKey);
+    public static Field newField(String name, String type, boolean primaryKey, String comment) {
+        return new Field(name, type, primaryKey, comment);
     }
 
     public static Field newField(String name, String type) {
@@ -74,10 +74,11 @@ public class Field {
         this.primaryKey = false;
     }
 
-    public Field(String name, String type, Boolean primaryKey) {
+    public Field(String name, String type, Boolean primaryKey, String comment) {
         this.name = name;
         this.type = type;
         this.primaryKey = primaryKey;
+        this.comment = comment;
     }
 
     public String getName() {
@@ -108,11 +109,11 @@ public class Field {
         return primaryKey;
     }
 
-    public String getCommend() {
-        return commend;
+    public String getComment() {
+        return comment;
     }
 
-    public void setCommend(String commend) {
-        this.commend = commend;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
