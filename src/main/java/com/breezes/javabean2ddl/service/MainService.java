@@ -153,8 +153,9 @@ public class MainService {
         }
 
         String commentStr = null;
-        if (null != field.getDocComment()) {
-            PsiDocTag comment = field.getDocComment().findTagByName("comment");
+        String commentAnnotation = MainSetting.getInstance().myProperties.getCommentAnnotation();
+        if (null != field.getDocComment() && StringUtils.isNotBlank(commentAnnotation)) {
+            PsiDocTag comment = field.getDocComment().findTagByName(commentAnnotation);
             if (null != comment && null != comment.getValueElement()) {
                 commentStr = comment.getValueElement().getText();
             }

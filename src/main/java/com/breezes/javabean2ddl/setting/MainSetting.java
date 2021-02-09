@@ -76,6 +76,10 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
          * id使用的注解
          */
         private String idAnnotation = "javax.persistence.Id";
+        /**
+         * 注释
+         */
+        private String commentAnnotation = "comment";
 
         public Boolean getAutoTranslationRadio() {
             return autoTranslationRadio;
@@ -147,6 +151,14 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
 
         public void setTableAnnotationProperty(String tableAnnotationProperty) {
             this.tableAnnotationProperty = tableAnnotationProperty;
+        }
+
+        public String getCommentAnnotation() {
+            return commentAnnotation;
+        }
+
+        public void setCommentAnnotation(String commentAnnotation) {
+            this.commentAnnotation = commentAnnotation;
         }
     }
 }

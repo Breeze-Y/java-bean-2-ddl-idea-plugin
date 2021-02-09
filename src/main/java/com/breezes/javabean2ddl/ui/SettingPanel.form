@@ -523,7 +523,7 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="Commend指定名称"/>
+                  <text value="Comment指定注解"/>
                 </properties>
               </component>
               <vspacer id="42961">
@@ -555,7 +555,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="commend"/>
+                  <text value=""/>
                 </properties>
               </component>
               <hspacer id="2713c">

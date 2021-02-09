@@ -81,6 +81,9 @@ public class SettingPanelConfig implements SearchableConfigurable {
         if (!StringUtils.equals(myProperties.getTableAnnotationProperty(), settingPanel.getTablePropertyText().getText())) {
             return true;
         }
+        if (!StringUtils.equals(myProperties.getCommentAnnotation(), settingPanel.getCommendText().getText())) {
+            return true;
+        }
         return false;
     }
 
@@ -98,6 +101,7 @@ public class SettingPanelConfig implements SearchableConfigurable {
         myProperties.setIdAnnotation(settingPanel.getIdText().getText());
         myProperties.setTableAnnotation(settingPanel.getTableText().getText());
         myProperties.setTableAnnotationProperty(settingPanel.getTablePropertyText().getText());
+        myProperties.setCommentAnnotation(settingPanel.getCommendText().getText());
         System.out.println("配置保存");
     }
 
@@ -116,5 +120,6 @@ public class SettingPanelConfig implements SearchableConfigurable {
         settingPanel.getIdText().setText(myProperties.getIdAnnotation());
         settingPanel.getTableText().setText(myProperties.getTableAnnotation());
         settingPanel.getTablePropertyText().setText(myProperties.getTableAnnotationProperty());
+        settingPanel.getCommendText().setText(myProperties.getCommentAnnotation());
     }
 }
