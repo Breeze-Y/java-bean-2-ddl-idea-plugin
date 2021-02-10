@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2021/1/30 19:02
  * @description
  */
-public enum SqlTypeEnum {
+public enum SqlTypeAndJavaTypeEnum {
 
     BIGINT("BIGINT", Arrays.asList("long", "Long"), "(20)"),
     INT("INT", Arrays.asList("int", "Integer"), "(11)"),
@@ -25,17 +25,17 @@ public enum SqlTypeEnum {
 
     private final String defaultLength;
 
-    SqlTypeEnum(String sqlType, List<String> javaType, String defaultLength) {
+    SqlTypeAndJavaTypeEnum(String sqlType, List<String> javaType, String defaultLength) {
         this.sqlType = sqlType;
         this.javaType = javaType;
         this.defaultLength = defaultLength;
     }
 
-    public static SqlTypeEnum findByJavaType(String javaType) {
+    public static SqlTypeAndJavaTypeEnum findByJavaType(String javaType) {
         if (StringUtils.isBlank(javaType)) {
             throw new RuntimeException("异常实体");
         }
-        for (SqlTypeEnum sqlTypeEnum : values()) {
+        for (SqlTypeAndJavaTypeEnum sqlTypeEnum : values()) {
             if (sqlTypeEnum.getJavaType().contains(javaType)) {
                 return sqlTypeEnum;
             }

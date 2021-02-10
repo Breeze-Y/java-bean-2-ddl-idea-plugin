@@ -1,7 +1,7 @@
 package com.breezes.javabean2ddl.model;
 
 
-import com.breezes.javabean2ddl.enums.SqlTypeEnum;
+import com.breezes.javabean2ddl.enums.SqlTypeAndJavaTypeEnum;
 import com.google.common.base.CaseFormat;
 
 import java.util.Objects;
@@ -58,11 +58,11 @@ public class Field {
      */
     public String getSqlTypeForMapping() {
         /*类型映射*/
-        return SqlTypeEnum.findByJavaType(this.type).getSqlType();
+        return SqlTypeAndJavaTypeEnum.findByJavaType(this.type).getSqlType();
     }
 
     public String getSqlTypeSize() {
-        return SqlTypeEnum.findByJavaType(this.type).getDefaultLength();
+        return SqlTypeAndJavaTypeEnum.findByJavaType(this.type).getDefaultLength();
     }
 
     public Field() {
