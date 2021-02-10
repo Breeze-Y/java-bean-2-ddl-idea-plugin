@@ -41,7 +41,7 @@ public class SettingPanelConfig implements SearchableConfigurable {
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
     public String getDisplayName() {
-        return "JavaBeanToDDL";
+        return "Java Bean To DDL";
     }
 
     @Nullable
