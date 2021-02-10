@@ -35,6 +35,7 @@ public class SqlTypeMapUtil {
         convertMap.put("double", new ConvertBean(properties.getDoubleType(), properties.getDoubleDefaultLength()));
         convertMap.put("Double", new ConvertBean(properties.getDoubleType(), properties.getDoubleDefaultLength()));
         convertMap.put("float", new ConvertBean(properties.getFloatType(), properties.getFloatDefaultLength()));
+        convertMap.put("Float", new ConvertBean(properties.getFloatType(), properties.getFloatDefaultLength()));
         convertMap.put("boolean", new ConvertBean(properties.getBooleanType(), properties.getBooleanDefaultLength()));
         convertMap.put("Boolean", new ConvertBean(properties.getBooleanType(), properties.getBooleanDefaultLength()));
         convertMap.put("Date", new ConvertBean(properties.getDateType(), properties.getDateDefaultLength()));
@@ -44,7 +45,7 @@ public class SqlTypeMapUtil {
         return convertMap;
     }
 
-    private ConvertBean typeConvert(String javaType) {
+    public ConvertBean typeConvert(String javaType) {
         if (StringUtils.isBlank(javaType)) {
             return null;
         }

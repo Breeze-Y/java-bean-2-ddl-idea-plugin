@@ -46,9 +46,8 @@ public class MainAction extends AnAction {
     private void convertMapInit() {
         if (null != convertMap) {
             convertMap.clear();
-        } else {
-            convertMap = SqlTypeMapUtil.getInstance().convertMapInit();
         }
+        convertMap = SqlTypeMapUtil.getInstance().convertMapInit();
     }
 
     private void translationMapInit() {

@@ -2,6 +2,7 @@ package com.breezes.javabean2ddl.model;
 
 
 import com.breezes.javabean2ddl.enums.SqlTypeAndJavaTypeEnum;
+import com.breezes.javabean2ddl.utils.SqlTypeMapUtil;
 import com.google.common.base.CaseFormat;
 
 import java.util.Objects;
@@ -47,10 +48,15 @@ public class Field {
     }
 
     public String getSqlType() {
-        if (null == getSqlTypeSize()) {
-            return getSqlTypeForMapping();
+        SqlTypeMapUtil.ConvertBean convertBean = SqlTypeMapUtil.getInstance().typeConvert(this.type);
+        if (null != convertBean) {
+            return convertBean.getSqlType() + convertBean.getSqlTypeLength();
         }
-        return getSqlTypeForMapping() + getSqlTypeSize();
+        return "";
+//        if (null == getSqlTypeSize()) {
+//            return getSqlTypeForMapping();
+//        }
+//        return getSqlTypeForMapping() + getSqlTypeSize();
     }
 
     /**

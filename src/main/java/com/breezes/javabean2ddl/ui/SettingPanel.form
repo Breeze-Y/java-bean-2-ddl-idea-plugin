@@ -764,7 +764,7 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="String/char"/>
+                  <text value="String/char/Character"/>
                 </properties>
               </component>
               <component id="2f47e" class="javax.swing.JLabel">
