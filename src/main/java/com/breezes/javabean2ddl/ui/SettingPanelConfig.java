@@ -1,7 +1,9 @@
 package com.breezes.javabean2ddl.ui;
 
+import com.breezes.javabean2ddl.enums.SqlTypeEnum;
 import com.breezes.javabean2ddl.enums.TranslationAppEnum;
 import com.breezes.javabean2ddl.model.ComboBoxItem;
+import com.breezes.javabean2ddl.model.SqlTypeComboBoxItem;
 import com.breezes.javabean2ddl.model.TranslationAppComboBoxItem;
 import com.breezes.javabean2ddl.setting.MainSetting;
 import com.intellij.openapi.options.ConfigurationException;
@@ -12,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
+import java.util.Objects;
 
 /**
  * @author yuchengxin@xiaomalixing.com
@@ -84,6 +87,42 @@ public class SettingPanelConfig implements SearchableConfigurable {
         if (!StringUtils.equals(myProperties.getCommentAnnotation(), settingPanel.getCommendText().getText())) {
             return true;
         }
+        ComboBoxItem intComboBox = (ComboBoxItem) settingPanel.getIntMapComboBox().getSelectedItem();
+        assert intComboBox != null;
+        if (!StringUtils.equals(myProperties.getIntType(), intComboBox.getValue())) {
+            return true;
+        }
+        ComboBoxItem doubleComboBox = (ComboBoxItem) settingPanel.getDoubleMapComboBox().getSelectedItem();
+        assert doubleComboBox != null;
+        if (!StringUtils.equals(myProperties.getDoubleType(), doubleComboBox.getValue())) {
+            return true;
+        }
+        ComboBoxItem floatComboBox = (ComboBoxItem) settingPanel.getFloatMapComboBox().getSelectedItem();
+        assert floatComboBox != null;
+        if (!StringUtils.equals(myProperties.getFloatType(), floatComboBox.getValue())) {
+            return true;
+        }
+        ComboBoxItem longComboBox = (ComboBoxItem) settingPanel.getLongMapComboBox().getSelectedItem();
+        assert longComboBox != null;
+        if (!StringUtils.equals(myProperties.getLongType(), longComboBox.getValue())) {
+            return true;
+        }
+        ComboBoxItem stringComboBox = (ComboBoxItem) settingPanel.getStringMapComboBox().getSelectedItem();
+        assert stringComboBox != null;
+        if (!StringUtils.equals(myProperties.getStringType(), stringComboBox.getValue())) {
+            return true;
+        }
+        ComboBoxItem booleanComboBox = (ComboBoxItem) settingPanel.getBooleanMapComboBox().getSelectedItem();
+        assert booleanComboBox != null;
+        if (!StringUtils.equals(myProperties.getBooleanType(), booleanComboBox.getValue())) {
+            return true;
+        }
+        ComboBoxItem dateComboBox = (ComboBoxItem) settingPanel.getDateMapComboBox().getSelectedItem();
+        assert dateComboBox != null;
+        if (!StringUtils.equals(myProperties.getDateType(), dateComboBox.getValue())) {
+            return true;
+        }
+
         return false;
     }
 
@@ -102,6 +141,14 @@ public class SettingPanelConfig implements SearchableConfigurable {
         myProperties.setTableAnnotation(settingPanel.getTableText().getText());
         myProperties.setTableAnnotationProperty(settingPanel.getTablePropertyText().getText());
         myProperties.setCommentAnnotation(settingPanel.getCommendText().getText());
+
+        myProperties.setIntType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getIntMapComboBox().getSelectedItem())).getValue());
+        myProperties.setBooleanType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getBooleanMapComboBox().getSelectedItem())).getValue());
+        myProperties.setDoubleType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getDoubleMapComboBox().getSelectedItem())).getValue());
+        myProperties.setFloatType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getFloatMapComboBox().getSelectedItem())).getValue());
+        myProperties.setLongType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getLongMapComboBox().getSelectedItem())).getValue());
+        myProperties.setStringType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getStringMapComboBox().getSelectedItem())).getValue());
+        myProperties.setDateType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getDateMapComboBox().getSelectedItem())).getValue());
         System.out.println("配置保存");
     }
 
@@ -121,5 +168,13 @@ public class SettingPanelConfig implements SearchableConfigurable {
         settingPanel.getTableText().setText(myProperties.getTableAnnotation());
         settingPanel.getTablePropertyText().setText(myProperties.getTableAnnotationProperty());
         settingPanel.getCommendText().setText(myProperties.getCommentAnnotation());
+
+        settingPanel.getIntMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getIntType()))));
+        settingPanel.getLongMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getLongType()))));
+        settingPanel.getBooleanMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getBooleanType()))));
+        settingPanel.getDateMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getDateType()))));
+        settingPanel.getStringMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getStringType()))));
+        settingPanel.getDoubleMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getDoubleType()))));
+        settingPanel.getFloatMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getFloatType()))));
     }
 }

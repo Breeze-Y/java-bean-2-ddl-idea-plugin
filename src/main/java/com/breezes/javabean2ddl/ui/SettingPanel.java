@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Objects;
 
 import static com.breezes.javabean2ddl.enums.TranslationAppEnum.*;
 
@@ -53,6 +54,10 @@ public class SettingPanel {
     private JTextField secretId;
     private JTextField secretKey;
     private JTextField tablePropertyText;
+    private JComboBox<ComboBoxItem> doubleMapComboBox;
+    private JComboBox<ComboBoxItem> floatMapComboBox;
+    private JTextField doubleDefaultText;
+    private JTextField floatDefaultText;
 
     private MainSetting.MySettingProperties properties;
 
@@ -106,6 +111,16 @@ public class SettingPanel {
         addSqlItem(booleanMapComboBox);
         addSqlItem(dateMapComboBox);
         addSqlItem(stringMapComboBox);
+        addSqlItem(doubleMapComboBox);
+        addSqlItem(floatMapComboBox);
+
+        intMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getIntType()))));
+        longMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getLongType()))));
+        booleanMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getBooleanType()))));
+        dateMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getDateType()))));
+        stringMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getStringType()))));
+        doubleMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getDoubleType()))));
+        floatMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getFloatType()))));
     }
 
     private void addSqlItem(JComboBox<ComboBoxItem> comboBox) {
@@ -398,5 +413,37 @@ public class SettingPanel {
 
     public void setTablePropertyText(JTextField tablePropertyText) {
         this.tablePropertyText = tablePropertyText;
+    }
+
+    public JComboBox<ComboBoxItem> getDoubleMapComboBox() {
+        return doubleMapComboBox;
+    }
+
+    public void setDoubleMapComboBox(JComboBox<ComboBoxItem> doubleMapComboBox) {
+        this.doubleMapComboBox = doubleMapComboBox;
+    }
+
+    public JComboBox<ComboBoxItem> getFloatMapComboBox() {
+        return floatMapComboBox;
+    }
+
+    public void setFloatMapComboBox(JComboBox<ComboBoxItem> floatMapComboBox) {
+        this.floatMapComboBox = floatMapComboBox;
+    }
+
+    public JTextField getDoubleDefaultText() {
+        return doubleDefaultText;
+    }
+
+    public void setDoubleDefaultText(JTextField doubleDefaultText) {
+        this.doubleDefaultText = doubleDefaultText;
+    }
+
+    public JTextField getFloatDefaultText() {
+        return floatDefaultText;
+    }
+
+    public void setFloatDefaultText(JTextField floatDefaultText) {
+        this.floatDefaultText = floatDefaultText;
     }
 }

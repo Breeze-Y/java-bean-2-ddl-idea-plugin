@@ -7,6 +7,8 @@ import com.intellij.openapi.components.Storage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static com.breezes.javabean2ddl.enums.SqlTypeAndJavaTypeEnum.*;
+
 /**
  * @author yuchengxin@xiaomalixing.com
  * @date 2021/2/7 21:26
@@ -80,6 +82,20 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
          * 注释
          */
         private String commentAnnotation = "comment";
+
+        private String intType = INT.getSqlType();
+
+        private String longType = BIGINT.getSqlType();
+
+        private String stringType = VARCHAR.getSqlType();
+
+        private String booleanType = TINYINT.getSqlType();
+
+        private String dateType = DATETIME.getSqlType();
+
+        private String doubleType = DOUBLE.getSqlType();
+
+        private String floatType = DOUBLE.getSqlType();
 
         public Boolean getAutoTranslationRadio() {
             return autoTranslationRadio;
@@ -159,6 +175,62 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
 
         public void setCommentAnnotation(String commentAnnotation) {
             this.commentAnnotation = commentAnnotation;
+        }
+
+        public String getIntType() {
+            return intType;
+        }
+
+        public void setIntType(String intType) {
+            this.intType = intType;
+        }
+
+        public String getLongType() {
+            return longType;
+        }
+
+        public void setLongType(String longType) {
+            this.longType = longType;
+        }
+
+        public String getStringType() {
+            return stringType;
+        }
+
+        public void setStringType(String stringType) {
+            this.stringType = stringType;
+        }
+
+        public String getBooleanType() {
+            return booleanType;
+        }
+
+        public void setBooleanType(String booleanType) {
+            this.booleanType = booleanType;
+        }
+
+        public String getDateType() {
+            return dateType;
+        }
+
+        public void setDateType(String dateType) {
+            this.dateType = dateType;
+        }
+
+        public String getDoubleType() {
+            return doubleType;
+        }
+
+        public void setDoubleType(String doubleType) {
+            this.doubleType = doubleType;
+        }
+
+        public String getFloatType() {
+            return floatType;
+        }
+
+        public void setFloatType(String floatType) {
+            this.floatType = floatType;
         }
     }
 }
