@@ -39,7 +39,6 @@ public class MainAction extends AnAction {
         /*获取当前类所有字段*/
         List<Field> fieldList = mainService.getFieldList(CURRENT_CLASS);
         String script = DdlFormatUtil.buildDdlScript(tableName, fieldList);
-        System.out.println(script);
         mainPanelInit(script, CURRENT_CLASS, mainService);
     }
 

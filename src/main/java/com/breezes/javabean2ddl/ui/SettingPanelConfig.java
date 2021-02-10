@@ -52,7 +52,6 @@ public class SettingPanelConfig implements SearchableConfigurable {
 
     @Override
     public boolean isModified() {
-        System.out.println("校验配置修改");
         MainSetting.MySettingProperties myProperties = mainSetting.myProperties;
         if (!StringUtils.equals(String.valueOf(myProperties.getAutoTranslationRadio()),
                 String.valueOf(settingPanel.getAutoTranslationRadio().isSelected()))) {
@@ -174,12 +173,10 @@ public class SettingPanelConfig implements SearchableConfigurable {
         myProperties.setBooleanDefaultLength(settingPanel.getBooleanDefaultText().getText());
         myProperties.setDateDefaultLength(settingPanel.getDateDefaultText().getText());
         myProperties.setStringDefaultLength(settingPanel.getStringDefaultText().getText());
-        System.out.println("配置保存");
     }
 
     @Override
     public void reset() {
-        System.out.println("配置重置");
         MainSetting.MySettingProperties myProperties = mainSetting.myProperties;
         settingPanel.getAutoTranslationRadio().setSelected((myProperties.getAutoTranslationRadio()));
         settingPanel.getTranslationAppComboBox().setSelectedItem(new TranslationAppComboBoxItem(

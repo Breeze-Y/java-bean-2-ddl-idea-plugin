@@ -31,13 +31,11 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
     @Nullable
     @Override
     public MainSetting.MySettingProperties getState() {
-        System.out.println("getState run ...");
         return myProperties;
     }
 
     @Override
     public void loadState(@NotNull MainSetting.MySettingProperties state) {
-        System.out.println("loadState run ...");
         myProperties = state;
     }
 

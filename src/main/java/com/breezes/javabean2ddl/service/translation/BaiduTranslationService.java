@@ -49,7 +49,6 @@ public class BaiduTranslationService implements Translation {
         MultiValueMap<String, String> request = buildParameter(content, CHINESE,
                 this.appId, this.secret);
         String response = new RestTemplateUtil().post(UNIVERSAL_API, new HashMap<>(), request, MediaType.APPLICATION_FORM_URLENCODED);
-        System.out.println(response);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             List<TranslationVO> resultList = new ArrayList<>();
