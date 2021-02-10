@@ -5,6 +5,7 @@ import com.breezes.javabean2ddl.enums.TranslationAppEnum;
 import com.breezes.javabean2ddl.model.ComboBoxItem;
 import com.breezes.javabean2ddl.model.SqlTypeComboBoxItem;
 import com.breezes.javabean2ddl.model.TranslationAppComboBoxItem;
+import com.breezes.javabean2ddl.service.BaseTypeItemListener;
 import com.breezes.javabean2ddl.setting.MainSetting;
 import com.intellij.openapi.components.ServiceManager;
 import org.apache.commons.lang3.StringUtils;
@@ -133,6 +134,14 @@ public class SettingPanel {
         stringMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getStringType()))));
         doubleMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getDoubleType()))));
         floatMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getFloatType()))));
+
+        intMapComboBox.addItemListener(new BaseTypeItemListener(intDefaultText));
+        longMapComboBox.addItemListener(new BaseTypeItemListener(longDefaultText));
+        booleanMapComboBox.addItemListener(new BaseTypeItemListener(booleanDefaultText));
+        dateMapComboBox.addItemListener(new BaseTypeItemListener(dateDefaultText));
+        stringMapComboBox.addItemListener(new BaseTypeItemListener(stringDefaultText));
+        doubleMapComboBox.addItemListener(new BaseTypeItemListener(doubleDefaultText));
+        floatMapComboBox.addItemListener(new BaseTypeItemListener(floatDefaultText));
     }
 
     private void addSqlItem(JComboBox<ComboBoxItem> comboBox) {

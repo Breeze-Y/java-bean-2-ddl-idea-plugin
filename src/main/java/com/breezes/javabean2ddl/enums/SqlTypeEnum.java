@@ -9,24 +9,27 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum SqlTypeEnum {
 
-    TINYINT("TINYINT"),
-    INT("INT"),
-    BIGINT("BIGINT"),
-    FLOAT("FLOAT"),
-    DOUBLE("DOUBLE"),
-    DECIMAL("DECIMAL"),
-    DATE("DATE"),
-    DATETIME("DATETIME"),
-    TIMESTAMP("TIMESTAMP"),
-    CHAR("CHAR"),
-    VARCHAR("VARCHAR"),
-    TEXT("TEXT"),
-    LONGTEXT("LONGTEXT");
+    TINYINT("TINYINT", false),
+    INT("INT", false),
+    BIGINT("BIGINT", false),
+    FLOAT("FLOAT", true),
+    DOUBLE("DOUBLE", true),
+    DECIMAL("DECIMAL", false),
+    DATE("DATE", true),
+    DATETIME("DATETIME", true),
+    TIMESTAMP("TIMESTAMP", true),
+    CHAR("CHAR", false),
+    VARCHAR("VARCHAR", false),
+    TEXT("TEXT", true),
+    LONGTEXT("LONGTEXT", true);
 
     private final String type;
 
-    SqlTypeEnum(String type) {
+    private final Boolean defaultLengthNeedEmpty;
+
+    SqlTypeEnum(String type, Boolean defaultLengthNeedEmpty) {
         this.type = type;
+        this.defaultLengthNeedEmpty = defaultLengthNeedEmpty;
     }
 
     public static SqlTypeEnum findByType(String type) {
@@ -40,5 +43,9 @@ public enum SqlTypeEnum {
 
     public String getType() {
         return type;
+    }
+
+    public Boolean getDefaultLengthNeedEmpty() {
+        return defaultLengthNeedEmpty;
     }
 }
