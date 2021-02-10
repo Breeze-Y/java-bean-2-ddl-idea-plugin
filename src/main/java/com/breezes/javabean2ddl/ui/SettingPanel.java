@@ -1,7 +1,9 @@
 package com.breezes.javabean2ddl.ui;
 
+import com.breezes.javabean2ddl.enums.SqlTypeEnum;
 import com.breezes.javabean2ddl.enums.TranslationAppEnum;
 import com.breezes.javabean2ddl.model.ComboBoxItem;
+import com.breezes.javabean2ddl.model.SqlTypeComboBoxItem;
 import com.breezes.javabean2ddl.model.TranslationAppComboBoxItem;
 import com.breezes.javabean2ddl.setting.MainSetting;
 import com.intellij.openapi.components.ServiceManager;
@@ -63,6 +65,8 @@ public class SettingPanel {
         translationAppComboBoxInit();
         /*自动翻译单元框*/
         autoTranslationRadioInit();
+        /*自定义映射下拉框初始化*/
+        commonlyUsedMapComboBoxInit();
 
         appIdText.setText(properties.getAppIdText());
         secretText.setText(properties.getSecretText());
@@ -97,7 +101,17 @@ public class SettingPanel {
     }
 
     private void commonlyUsedMapComboBoxInit() {
+        addSqlItem(intMapComboBox);
+        addSqlItem(longMapComboBox);
+        addSqlItem(booleanMapComboBox);
+        addSqlItem(dateMapComboBox);
+        addSqlItem(stringMapComboBox);
+    }
 
+    private void addSqlItem(JComboBox<ComboBoxItem> comboBox) {
+        for (SqlTypeEnum typeEnum : SqlTypeEnum.values()) {
+            comboBox.addItem(new SqlTypeComboBoxItem(typeEnum));
+        }
     }
 
     private void translationAppComboBoxInit() {

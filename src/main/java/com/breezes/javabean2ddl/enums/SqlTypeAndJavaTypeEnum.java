@@ -17,6 +17,7 @@ public enum SqlTypeAndJavaTypeEnum {
     INT("INT", Arrays.asList("int", "Integer"), "(11)"),
     VARCHAR("VARCHAR", Arrays.asList("String", "char"), "(255)"),
     TINYINT("TINYINT", Arrays.asList("boolean", "Boolean"), "(1)"),
+    DOUBLE("DOUBLE", Arrays.asList("double", "float", "Double", "Float"), null),
     DATETIME("DATETIME", Collections.singletonList("Date"), null);
 
     private final String sqlType;
