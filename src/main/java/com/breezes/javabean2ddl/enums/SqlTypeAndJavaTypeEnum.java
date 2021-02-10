@@ -15,10 +15,10 @@ public enum SqlTypeAndJavaTypeEnum {
 
     BIGINT("BIGINT", Arrays.asList("long", "Long"), "(20)"),
     INT("INT", Arrays.asList("int", "Integer"), "(11)"),
-    VARCHAR("VARCHAR", Arrays.asList("String", "char"), "(255)"),
+    VARCHAR("VARCHAR", Arrays.asList("String", "char", "Character"), "(255)"),
     TINYINT("TINYINT", Arrays.asList("boolean", "Boolean"), "(1)"),
-    DOUBLE("DOUBLE", Arrays.asList("double", "float", "Double", "Float"), null),
-    DATETIME("DATETIME", Collections.singletonList("Date"), null);
+    DOUBLE("DOUBLE", Arrays.asList("double", "float", "Double", "Float"), ""),
+    DATETIME("DATETIME", Collections.singletonList("Date"), "");
 
     private final String sqlType;
 

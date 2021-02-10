@@ -97,6 +97,20 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
 
         private String floatType = DOUBLE.getSqlType();
 
+        private String intDefaultLength = INT.getDefaultLength();
+
+        private String longDefaultLength = BIGINT.getDefaultLength();
+
+        private String stringDefaultLength = VARCHAR.getDefaultLength();
+
+        private String doubleDefaultLength = DOUBLE.getDefaultLength();
+
+        private String floatDefaultLength = DOUBLE.getDefaultLength();
+
+        private String booleanDefaultLength = TINYINT.getDefaultLength();
+
+        private String dateDefaultLength = DATETIME.getDefaultLength();
+
         public Boolean getAutoTranslationRadio() {
             return autoTranslationRadio;
         }
@@ -231,6 +245,62 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
 
         public void setFloatType(String floatType) {
             this.floatType = floatType;
+        }
+
+        public String getIntDefaultLength() {
+            return intDefaultLength;
+        }
+
+        public void setIntDefaultLength(String intDefaultLength) {
+            this.intDefaultLength = intDefaultLength;
+        }
+
+        public String getLongDefaultLength() {
+            return longDefaultLength;
+        }
+
+        public void setLongDefaultLength(String longDefaultLength) {
+            this.longDefaultLength = longDefaultLength;
+        }
+
+        public String getStringDefaultLength() {
+            return stringDefaultLength;
+        }
+
+        public void setStringDefaultLength(String stringDefaultLength) {
+            this.stringDefaultLength = stringDefaultLength;
+        }
+
+        public String getDoubleDefaultLength() {
+            return doubleDefaultLength;
+        }
+
+        public void setDoubleDefaultLength(String doubleDefaultLength) {
+            this.doubleDefaultLength = doubleDefaultLength;
+        }
+
+        public String getFloatDefaultLength() {
+            return floatDefaultLength;
+        }
+
+        public void setFloatDefaultLength(String floatDefaultLength) {
+            this.floatDefaultLength = floatDefaultLength;
+        }
+
+        public String getBooleanDefaultLength() {
+            return booleanDefaultLength;
+        }
+
+        public void setBooleanDefaultLength(String booleanDefaultLength) {
+            this.booleanDefaultLength = booleanDefaultLength;
+        }
+
+        public String getDateDefaultLength() {
+            return dateDefaultLength;
+        }
+
+        public void setDateDefaultLength(String dateDefaultLength) {
+            this.dateDefaultLength = dateDefaultLength;
         }
     }
 }

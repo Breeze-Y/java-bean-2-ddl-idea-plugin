@@ -5,6 +5,7 @@ import com.breezes.javabean2ddl.service.MainService;
 import com.breezes.javabean2ddl.ui.MainPanel;
 import com.breezes.javabean2ddl.utils.BaseUtil;
 import com.breezes.javabean2ddl.utils.DdlFormatUtil;
+import com.breezes.javabean2ddl.utils.SqlTypeMapUtil;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
@@ -24,14 +25,12 @@ public class MainAction extends AnAction {
 
     public static ConcurrentHashMap<String, String> translationMap;
 
+    public static ConcurrentHashMap<String, SqlTypeMapUtil.ConvertBean> convertMap;
+
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-        if (null != translationMap) {
-            translationMap.clear();
-        } else {
-            translationMap = new ConcurrentHashMap<>();
-        }
-
+        translationMapInit();
+        convertMapInit();
         PsiFile FILE = anActionEvent.getData(CommonDataKeys.PSI_FILE);
         PsiClass CURRENT_CLASS = BaseUtil.getClassEntity(FILE);
         assert CURRENT_CLASS != null;
@@ -42,6 +41,22 @@ public class MainAction extends AnAction {
         String script = DdlFormatUtil.buildDdlScript(tableName, fieldList);
         System.out.println(script);
         mainPanelInit(script, CURRENT_CLASS, mainService);
+    }
+
+    private void convertMapInit() {
+        if (null != convertMap) {
+            convertMap.clear();
+        } else {
+            convertMap = SqlTypeMapUtil.getInstance().convertMapInit();
+        }
+    }
+
+    private void translationMapInit() {
+        if (null != translationMap) {
+            translationMap.clear();
+        } else {
+            translationMap = new ConcurrentHashMap<>();
+        }
     }
 
     /**

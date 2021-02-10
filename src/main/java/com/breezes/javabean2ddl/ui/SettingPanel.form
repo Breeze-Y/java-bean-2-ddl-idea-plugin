@@ -665,7 +665,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="11"/>
+                  <text value=""/>
                 </properties>
               </component>
               <hspacer id="fab9d">
@@ -749,7 +749,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="20"/>
+                  <text value=""/>
                 </properties>
               </component>
               <hspacer id="33790">
@@ -833,7 +833,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="255"/>
+                  <text value=""/>
                 </properties>
               </component>
               <hspacer id="f42d4">
@@ -917,7 +917,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="1"/>
+                  <text value=""/>
                 </properties>
               </component>
               <hspacer id="20706">
@@ -1001,7 +1001,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="null"/>
+                  <text value=""/>
                 </properties>
               </component>
               <hspacer id="bb734">
@@ -1115,7 +1115,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="null"/>
+                  <text value=""/>
                 </properties>
               </component>
               <hspacer id="28e9a">
@@ -1205,7 +1205,7 @@
                   <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <text value="null"/>
+                  <text value=""/>
                 </properties>
               </component>
               <hspacer id="43777">

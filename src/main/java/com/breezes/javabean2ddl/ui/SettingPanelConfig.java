@@ -122,8 +122,25 @@ public class SettingPanelConfig implements SearchableConfigurable {
         if (!StringUtils.equals(myProperties.getDateType(), dateComboBox.getValue())) {
             return true;
         }
-
-        return false;
+        if (!StringUtils.equals(myProperties.getIntDefaultLength(), settingPanel.getIntDefaultText().getText())) {
+            return true;
+        }
+        if (!StringUtils.equals(myProperties.getLongDefaultLength(), settingPanel.getLongDefaultText().getText())) {
+            return true;
+        }
+        if (!StringUtils.equals(myProperties.getDoubleDefaultLength(), settingPanel.getDoubleDefaultText().getText())) {
+            return true;
+        }
+        if (!StringUtils.equals(myProperties.getFloatDefaultLength(), settingPanel.getFloatDefaultText().getText())) {
+            return true;
+        }
+        if (!StringUtils.equals(myProperties.getBooleanDefaultLength(), settingPanel.getBooleanDefaultText().getText())) {
+            return true;
+        }
+        if (!StringUtils.equals(myProperties.getStringDefaultLength(), settingPanel.getStringDefaultText().getText())) {
+            return true;
+        }
+        return !StringUtils.equals(myProperties.getDateDefaultLength(), settingPanel.getDateDefaultText().getText());
     }
 
     @Override
@@ -149,6 +166,14 @@ public class SettingPanelConfig implements SearchableConfigurable {
         myProperties.setLongType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getLongMapComboBox().getSelectedItem())).getValue());
         myProperties.setStringType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getStringMapComboBox().getSelectedItem())).getValue());
         myProperties.setDateType(((ComboBoxItem) Objects.requireNonNull(settingPanel.getDateMapComboBox().getSelectedItem())).getValue());
+
+        myProperties.setIntDefaultLength(settingPanel.getIntDefaultText().getText());
+        myProperties.setLongDefaultLength(settingPanel.getLongDefaultText().getText());
+        myProperties.setDoubleDefaultLength(settingPanel.getDoubleDefaultText().getText());
+        myProperties.setFloatDefaultLength(settingPanel.getFloatDefaultText().getText());
+        myProperties.setBooleanDefaultLength(settingPanel.getBooleanDefaultText().getText());
+        myProperties.setDateDefaultLength(settingPanel.getDateDefaultText().getText());
+        myProperties.setStringDefaultLength(settingPanel.getStringDefaultText().getText());
         System.out.println("配置保存");
     }
 
@@ -176,5 +201,13 @@ public class SettingPanelConfig implements SearchableConfigurable {
         settingPanel.getStringMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getStringType()))));
         settingPanel.getDoubleMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getDoubleType()))));
         settingPanel.getFloatMapComboBox().setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(myProperties.getFloatType()))));
+
+        settingPanel.getIntDefaultText().setText(myProperties.getIntDefaultLength());
+        settingPanel.getLongDefaultText().setText(myProperties.getLongDefaultLength());
+        settingPanel.getDoubleDefaultText().setText(myProperties.getDoubleDefaultLength());
+        settingPanel.getFloatDefaultText().setText(myProperties.getFloatDefaultLength());
+        settingPanel.getBooleanDefaultText().setText(myProperties.getBooleanDefaultLength());
+        settingPanel.getDateDefaultText().setText(myProperties.getDateDefaultLength());
+        settingPanel.getStringDefaultText().setText(myProperties.getStringDefaultLength());
     }
 }

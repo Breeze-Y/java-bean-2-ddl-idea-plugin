@@ -78,6 +78,18 @@ public class SettingPanel {
 
         secretId.setText(properties.getSecretId());
         secretKey.setText(properties.getSecretKey());
+        /*sql类型默认长度文本框初始化*/
+        sqlLengthTextInit();
+    }
+
+    private void sqlLengthTextInit() {
+        intDefaultText.setText(properties.getIntDefaultLength());
+        longDefaultText.setText(properties.getLongDefaultLength());
+        doubleDefaultText.setText(properties.getDoubleDefaultLength());
+        floatDefaultText.setText(properties.getFloatDefaultLength());
+        booleanDefaultText.setText(properties.getBooleanDefaultLength());
+        dateDefaultText.setText(properties.getDateDefaultLength());
+        stringDefaultText.setText(properties.getStringDefaultLength());
     }
 
     private void accountPanelInit() {
