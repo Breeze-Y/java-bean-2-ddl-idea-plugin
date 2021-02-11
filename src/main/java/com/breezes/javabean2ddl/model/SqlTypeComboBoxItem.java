@@ -3,7 +3,7 @@ package com.breezes.javabean2ddl.model;
 import com.breezes.javabean2ddl.enums.SqlTypeEnum;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/10 17:52
  * @description
  */

@@ -1,7 +1,7 @@
 package com.breezes.javabean2ddl.model;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/5 11:58
  * @description
  */

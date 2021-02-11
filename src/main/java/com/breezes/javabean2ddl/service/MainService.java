@@ -18,7 +18,7 @@ import static com.breezes.javabean2ddl.constant.Constant.DATE_PACKAGE;
 import static com.breezes.javabean2ddl.constant.Constant.STRING_PACKAGE;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/1/31 14:39
  * @description
  */

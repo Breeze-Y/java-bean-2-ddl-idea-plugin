@@ -8,7 +8,7 @@ import com.breezes.javabean2ddl.setting.MainSetting;
 import java.util.List;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/1/30 16:48
  * @description
  */

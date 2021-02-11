@@ -1,7 +1,7 @@
 package com.breezes.javabean2ddl.service;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/1/30 16:49
  * @description
  */

@@ -3,7 +3,7 @@ package com.breezes.javabean2ddl.model;
 import java.util.Objects;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/6 23:44
  * @description
  */

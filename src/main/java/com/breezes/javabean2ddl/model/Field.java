@@ -8,7 +8,7 @@ import com.google.common.base.CaseFormat;
 import java.util.Objects;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/1/30 15:11
  * @description
  */

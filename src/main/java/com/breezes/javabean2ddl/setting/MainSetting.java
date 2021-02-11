@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import static com.breezes.javabean2ddl.enums.SqlTypeAndJavaTypeEnum.*;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/7 21:26
  * @description
  */

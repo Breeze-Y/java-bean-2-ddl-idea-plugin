@@ -18,7 +18,7 @@ import static com.breezes.javabean2ddl.enums.TranslationAppEnum.BAIDU;
 import static com.breezes.javabean2ddl.enums.TranslationAppEnum.TENCENT;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/5 14:27
  * @description
  */

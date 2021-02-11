@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/10 23:15
  * @description 数据库类型和java类型映射工具类
  */

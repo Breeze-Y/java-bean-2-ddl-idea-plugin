@@ -3,7 +3,7 @@ package com.breezes.javabean2ddl.model;
 import com.breezes.javabean2ddl.enums.TranslationAppEnum;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/7 19:37
  * @description
  */

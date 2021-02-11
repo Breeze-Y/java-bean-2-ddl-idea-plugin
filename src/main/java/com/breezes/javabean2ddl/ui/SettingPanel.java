@@ -20,7 +20,7 @@ import java.util.Objects;
 import static com.breezes.javabean2ddl.enums.TranslationAppEnum.*;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/6 19:35
  * @description
  */

@@ -3,7 +3,7 @@ package com.breezes.javabean2ddl.enums;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author yuchengxin@xiaomalixing.com
+ * @author breezes_y@163.com
  * @date 2021/2/10 17:56
  * @description
  */
