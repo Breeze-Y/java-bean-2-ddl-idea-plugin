@@ -52,11 +52,8 @@ public class Field {
         if (null != convertBean) {
             return convertBean.getSqlType() + convertBean.getSqlTypeLength();
         }
-        return "";
-//        if (null == getSqlTypeSize()) {
-//            return getSqlTypeForMapping();
-//        }
-//        return getSqlTypeForMapping() + getSqlTypeSize();
+        /*兜底配置*/
+        return getSqlTypeForMapping() + getSqlTypeSize();
     }
 
     /**
