@@ -31,15 +31,15 @@ public class MainAction extends AnAction {
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
         translationMapInit();
         convertMapInit();
-        PsiFile FILE = anActionEvent.getData(CommonDataKeys.PSI_FILE);
-        PsiClass CURRENT_CLASS = BaseUtil.getClassEntity(FILE);
-        assert CURRENT_CLASS != null;
+        PsiFile file = anActionEvent.getData(CommonDataKeys.PSI_FILE);
+        PsiClass currentClass = BaseUtil.getClassEntity(file);
+        assert currentClass != null;
         MainService mainService = new MainService();
-        String tableName = mainService.getTableName(CURRENT_CLASS);
+        String tableName = mainService.getTableName(currentClass);
         /*获取当前类所有字段*/
-        List<Field> fieldList = mainService.getFieldList(CURRENT_CLASS);
+        List<Field> fieldList = mainService.getFieldList(currentClass);
         String script = DdlFormatUtil.buildDdlScript(tableName, fieldList);
-        mainPanelInit(script, CURRENT_CLASS, mainService);
+        mainPanelInit(script, currentClass, mainService);
     }
 
     private void convertMapInit() {

@@ -7,8 +7,12 @@ import com.breezes.javabean2ddl.utils.BaseUtil;
 import com.breezes.javabean2ddl.utils.TranslationUtil;
 import com.google.common.base.CaseFormat;
 import com.intellij.psi.*;
+import com.intellij.psi.impl.source.javadoc.PsiDocTokenImpl;
+import com.intellij.psi.impl.source.tree.PsiWhiteSpaceImpl;
 import com.intellij.psi.impl.source.tree.java.PsiLiteralExpressionImpl;
+import com.intellij.psi.javadoc.PsiDocComment;
 import com.intellij.psi.javadoc.PsiDocTag;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
@@ -144,15 +148,47 @@ public class MainService {
             }
         }
 
-        String commentStr = null;
+        return Field.newField(field.getName(), field.getType().getPresentableText(), primaryKey, getComment(field));
+    }
+
+    private String getComment(PsiField field) {
         String commentAnnotation = MainSetting.getInstance().myProperties.getCommentAnnotation();
         if (null != field.getDocComment() && StringUtils.isNotBlank(commentAnnotation)) {
+            // 字段上携带了对应的标识备注注解
             PsiDocTag comment = field.getDocComment().findTagByName(commentAnnotation);
             if (null != comment && null != comment.getValueElement()) {
-                commentStr = comment.getValueElement().getText();
+                return comment.getValueElement().getText();
+            }
+            // 字段上没有携带注解，则从Doc注释上获取
+            PsiDocComment docComment = field.getDocComment();
+            if (null != docComment) {
+                PsiElement[] elements = docComment.getDescriptionElements();
+                return parseAllDoc(elements);
             }
         }
-        return Field.newField(field.getName(), field.getType().getPresentableText(), primaryKey, commentStr);
+        return null;
+    }
+
+    /**
+     * 解析出文档所有有效文本
+     */
+    public String parseAllDoc(PsiElement[] elements) {
+        if (elements == null || elements.length == 0) {
+            return null;
+        }
+        List<String> docList = new ArrayList<>();
+        for (PsiElement element : elements) {
+            if (element instanceof PsiWhiteSpaceImpl) {
+                continue;
+            }
+            if (element instanceof PsiDocTokenImpl) {
+                String text = element.getText();
+                if (StringUtils.isNotBlank(text)) {
+                    docList.add(text.trim());
+                }
+            }
+        }
+        return CollectionUtils.isEmpty(docList) ? StringUtils.EMPTY : String.join(" ", docList);
     }
 
     /**
