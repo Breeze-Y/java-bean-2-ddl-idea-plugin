@@ -53,6 +53,7 @@ public class BaseTypeItemListener implements ItemListener {
         }
         if (StringUtils.equals(SqlTypeEnum.VARCHAR.getType(), value)) {
             jTextField.setText("(255)");
+            return;
         }
         if (StringUtils.equals(SqlTypeEnum.CHAR.getType(), value)) {
             jTextField.setText("(255)");
