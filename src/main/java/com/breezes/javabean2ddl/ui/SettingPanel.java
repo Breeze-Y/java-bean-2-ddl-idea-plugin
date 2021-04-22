@@ -59,6 +59,8 @@ public class SettingPanel {
     private JComboBox<ComboBoxItem> floatMapComboBox;
     private JTextField doubleDefaultText;
     private JTextField floatDefaultText;
+    private JComboBox<ComboBoxItem> bigDecimalMapComboBox;
+    private JTextField bigDecimalDefaultText;
 
     private MainSetting.MySettingProperties properties;
 
@@ -91,6 +93,7 @@ public class SettingPanel {
         booleanDefaultText.setText(properties.getBooleanDefaultLength());
         dateDefaultText.setText(properties.getDateDefaultLength());
         stringDefaultText.setText(properties.getStringDefaultLength());
+        bigDecimalDefaultText.setText(properties.getBigDecimalDefaultLength());
     }
 
     private void accountPanelInit() {
@@ -126,6 +129,7 @@ public class SettingPanel {
         addSqlItem(stringMapComboBox);
         addSqlItem(doubleMapComboBox);
         addSqlItem(floatMapComboBox);
+        addSqlItem(bigDecimalMapComboBox);
 
         intMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getIntType()))));
         longMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getLongType()))));
@@ -134,6 +138,7 @@ public class SettingPanel {
         stringMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getStringType()))));
         doubleMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getDoubleType()))));
         floatMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getFloatType()))));
+        bigDecimalMapComboBox.setSelectedItem(new SqlTypeComboBoxItem(Objects.requireNonNull(SqlTypeEnum.findByType(properties.getBigDecimalType()))));
 
         intMapComboBox.addItemListener(new BaseTypeItemListener(intDefaultText));
         longMapComboBox.addItemListener(new BaseTypeItemListener(longDefaultText));
@@ -142,6 +147,7 @@ public class SettingPanel {
         stringMapComboBox.addItemListener(new BaseTypeItemListener(stringDefaultText));
         doubleMapComboBox.addItemListener(new BaseTypeItemListener(doubleDefaultText));
         floatMapComboBox.addItemListener(new BaseTypeItemListener(floatDefaultText));
+        bigDecimalMapComboBox.addItemListener(new BaseTypeItemListener(bigDecimalDefaultText));
     }
 
     private void addSqlItem(JComboBox<ComboBoxItem> comboBox) {
@@ -466,5 +472,21 @@ public class SettingPanel {
 
     public void setFloatDefaultText(JTextField floatDefaultText) {
         this.floatDefaultText = floatDefaultText;
+    }
+
+    public JComboBox<ComboBoxItem> getBigDecimalMapComboBox() {
+        return bigDecimalMapComboBox;
+    }
+
+    public void setBigDecimalMapComboBox(JComboBox<ComboBoxItem> bigDecimalMapComboBox) {
+        this.bigDecimalMapComboBox = bigDecimalMapComboBox;
+    }
+
+    public JTextField getBigDecimalDefaultText() {
+        return bigDecimalDefaultText;
+    }
+
+    public void setBigDecimalDefaultText(JTextField bigDecimalDefaultText) {
+        this.bigDecimalDefaultText = bigDecimalDefaultText;
     }
 }

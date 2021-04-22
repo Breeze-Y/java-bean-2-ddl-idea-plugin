@@ -18,7 +18,8 @@ public enum SqlTypeAndJavaTypeEnum {
     VARCHAR("VARCHAR", Arrays.asList("String", "char", "Character"), "(255)"),
     TINYINT("TINYINT", Arrays.asList("boolean", "Boolean"), "(1)"),
     DOUBLE("DOUBLE", Arrays.asList("double", "float", "Double", "Float"), ""),
-    DATETIME("DATETIME", Collections.singletonList("Date"), "");
+    DATETIME("DATETIME", Collections.singletonList("Date"), ""),
+    DECIMAL("DECIMAL", Collections.singletonList("BigDecimal"), "(18,2)");
 
     private final String sqlType;
 

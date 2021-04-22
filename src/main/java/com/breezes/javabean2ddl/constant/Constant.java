@@ -11,4 +11,6 @@ public class Constant {
 
     public static final String  STRING_PACKAGE = "java.lang.String";
 
+    public static final String  BIGDECIMAL_PACKAGE = "java.math.BigDecimal";
+
 }

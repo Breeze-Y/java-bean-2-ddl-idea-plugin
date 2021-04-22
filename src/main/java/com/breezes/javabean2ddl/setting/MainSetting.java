@@ -95,6 +95,8 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
 
         private String floatType = DOUBLE.getSqlType();
 
+        private String bigDecimalType = DECIMAL.getSqlType();
+
         private String intDefaultLength = INT.getDefaultLength();
 
         private String longDefaultLength = BIGINT.getDefaultLength();
@@ -108,6 +110,8 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
         private String booleanDefaultLength = TINYINT.getDefaultLength();
 
         private String dateDefaultLength = DATETIME.getDefaultLength();
+
+        private String bigDecimalDefaultLength = DECIMAL.getDefaultLength();
 
         public Boolean getAutoTranslationRadio() {
             return autoTranslationRadio;
@@ -299,6 +303,22 @@ public class MainSetting implements PersistentStateComponent<MainSetting.MySetti
 
         public void setDateDefaultLength(String dateDefaultLength) {
             this.dateDefaultLength = dateDefaultLength;
+        }
+
+        public String getBigDecimalType() {
+            return bigDecimalType;
+        }
+
+        public void setBigDecimalType(String bigDecimalType) {
+            this.bigDecimalType = bigDecimalType;
+        }
+
+        public String getBigDecimalDefaultLength() {
+            return bigDecimalDefaultLength;
+        }
+
+        public void setBigDecimalDefaultLength(String bigDecimalDefaultLength) {
+            this.bigDecimalDefaultLength = bigDecimalDefaultLength;
         }
     }
 }

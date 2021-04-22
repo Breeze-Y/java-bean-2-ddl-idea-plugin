@@ -18,8 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.breezes.javabean2ddl.constant.Constant.DATE_PACKAGE;
-import static com.breezes.javabean2ddl.constant.Constant.STRING_PACKAGE;
+import static com.breezes.javabean2ddl.constant.Constant.*;
 
 /**
  * @author breezes_y@163.com
@@ -203,7 +202,8 @@ public class MainService {
         }
         String internalCanonicalText = psiField.getType().getInternalCanonicalText();
         return (StringUtils.equals(STRING_PACKAGE, internalCanonicalText)
-                || StringUtils.equals(DATE_PACKAGE, internalCanonicalText));
+                || StringUtils.equals(DATE_PACKAGE, internalCanonicalText)
+                || StringUtils.equals(BIGDECIMAL_PACKAGE, internalCanonicalText));
     }
 
 }

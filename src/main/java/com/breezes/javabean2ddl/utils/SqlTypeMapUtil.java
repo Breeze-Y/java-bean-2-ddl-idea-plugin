@@ -42,6 +42,7 @@ public class SqlTypeMapUtil {
         convertMap.put("String", new ConvertBean(properties.getStringType(), properties.getStringDefaultLength()));
         convertMap.put("char", new ConvertBean(properties.getStringType(), properties.getStringDefaultLength()));
         convertMap.put("Character", new ConvertBean(properties.getStringType(), properties.getStringDefaultLength()));
+        convertMap.put("BigDecimal", new ConvertBean(properties.getBigDecimalType(), properties.getBigDecimalDefaultLength()));
         return convertMap;
     }
 
