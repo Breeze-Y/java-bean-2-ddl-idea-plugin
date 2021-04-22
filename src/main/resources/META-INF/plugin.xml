@@ -38,6 +38,11 @@
 
     <change-notes><![CDATA[
       <ul>
+        <li>1.2.0</li>
+        <li>New: BigDecimal类型字段支持</li>
+        <li>Enhancement: comment注释可以从Doc上获取</li>
+      </ul>
+      <ul>
         <li>1.1.0</li>
         <li>New: 配置面板实现</li>
         <li>New: 自定义配置实现</li>
