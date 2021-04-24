@@ -38,10 +38,17 @@
 
     <change-notes><![CDATA[
       <ul>
+        <li>1.2.1</li>
+        <li>Fix: 修复部分注解会导致字段被忽略</li>
+        <li>Enhancement: 修改logo</li>
+      </ul>
+
+      <ul>
         <li>1.2.0</li>
         <li>New: BigDecimal类型字段支持</li>
         <li>Enhancement: comment注释可以从Doc上获取</li>
       </ul>
+
       <ul>
         <li>1.1.0</li>
         <li>New: 配置面板实现</li>
@@ -50,6 +57,7 @@
         <li>New: 百度翻译支持</li>
         <li>New: 腾讯翻译支持</li>
       </ul>
+
       <ul>
         <li>1.0.0-SNAPSHOT</li>
         <li>New: 一键复制</li>

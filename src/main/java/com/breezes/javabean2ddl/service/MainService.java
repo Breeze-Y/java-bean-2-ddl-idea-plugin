@@ -27,8 +27,6 @@ import static com.breezes.javabean2ddl.constant.Constant.*;
  */
 public class MainService {
 
-    public static final String PRIMARY_KEY_COMMEND = "物理主键";
-
     public String getTableName(PsiClass currentClass) {
         MainSetting.MySettingProperties properties = MainSetting.getInstance().myProperties;
         String tableAnnotation = properties.getTableAnnotation();
@@ -197,13 +195,22 @@ public class MainService {
      * @return
      */
     private boolean isNeedAddConvert(PsiField psiField) {
+        if (null == psiField) {
+            return false;
+        }
+        // 忽略 serialVersionUID
+        if (SERIAL_VERSION_UID.equals(psiField.getName())) {
+            return false;
+        }
+        // 是否基础数据类型
         if (BaseUtil.isPrimitiveType(psiField)) {
             return true;
         }
-        String internalCanonicalText = psiField.getType().getInternalCanonicalText();
-        return (StringUtils.equals(STRING_PACKAGE, internalCanonicalText)
-                || StringUtils.equals(DATE_PACKAGE, internalCanonicalText)
-                || StringUtils.equals(BIGDECIMAL_PACKAGE, internalCanonicalText));
+        // 额外可支持的类型
+        String canonicalText = psiField.getType().getCanonicalText();
+        return (StringUtils.equals(STRING_PACKAGE, canonicalText)
+                || StringUtils.equals(DATE_PACKAGE, canonicalText)
+                || StringUtils.equals(BIG_DECIMAL_PACKAGE, canonicalText));
     }
 
 }

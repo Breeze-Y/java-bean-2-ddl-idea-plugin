@@ -79,12 +79,14 @@ public class BaseUtil {
         if (null == field) {
             return false;
         }
-        PsiType type = field.getType();
-        JvmPrimitiveTypeKind kindByName = JvmPrimitiveTypeKind.getKindByName(type.getInternalCanonicalText());
+
+        String canonicalText = field.getType().getCanonicalText();
+        JvmPrimitiveTypeKind kindByName = JvmPrimitiveTypeKind.getKindByName(canonicalText);
         if (null != kindByName) {
             return true;
         }
-        JvmPrimitiveTypeKind kindByFqn = JvmPrimitiveTypeKind.getKindByFqn(type.getInternalCanonicalText());
+
+        JvmPrimitiveTypeKind kindByFqn = JvmPrimitiveTypeKind.getKindByFqn(canonicalText);
         return null != kindByFqn;
     }
 
