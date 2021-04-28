@@ -24,26 +24,23 @@ import static com.breezes.javabean2ddl.enums.TranslationAppEnum.TENCENT;
  */
 public class TranslationUtil {
 
-    private static ThreadLocal<Translation> translationLocal = new ThreadLocal<>();
-
-    public static void translationInit(MainSetting.MySettingProperties properties) {
-        translationLocal.remove();
+    public static Translation translationInit(MainSetting.MySettingProperties properties) {
         if (StringUtils.equals(BAIDU.getValue(), properties.getTranslationAppComboBox())) {
-            translationLocal.set(new BaiduTranslationService(properties.getAppIdText(), properties.getSecretText()));
+            return new BaiduTranslationService(properties.getAppIdText(), properties.getSecretText());
         }
         if (StringUtils.equals(TENCENT.getValue(), properties.getTranslationAppComboBox())) {
-            translationLocal.set(new TencentTranslationService(properties.getSecretId(), properties.getSecretKey()));
+            return new TencentTranslationService(properties.getSecretId(), properties.getSecretKey());
         }
+        return null;
     }
 
     public static Map<String, String> enToZh(List<Field> fieldList, String tableName) {
         tableName = tableName.replace("_", " ");
         MainSetting.MySettingProperties properties = MainSetting.getInstance().myProperties;
         String translationApp = properties.getTranslationAppComboBox();
-        translationInit(properties);
 
         Map<String, String> dataMap = new HashMap<>();
-        Translation translation = translationLocal.get();
+        Translation translation = translationInit(properties);
         if (null == translation) {
             return dataMap;
         }
